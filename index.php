@@ -321,7 +321,7 @@ include_once("master_layouts/header.php")
 <!-- /.container-fluid -->
 
 <?php
-session_destroy();
+// session_destroy();
 ?>
 <?php
 include_once("master_layouts/footer.php")

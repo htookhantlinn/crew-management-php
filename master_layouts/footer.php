@@ -58,6 +58,17 @@
 <script src="js/demo/chart-area-demo.js"></script>
 <script src="js/demo/chart-pie-demo.js"></script>
 
+<!-- jquery core -->
+<script src="./node_modules/jquery/dist/jquery.min.js"></script>
+<!-- jquery repeater -->
+<script src="./node_modules/jquery.repeater/jquery.repeater.min.js"></script>
+
+<!-- bootstrap core -->
+<script src="./node_modules/bootstrap5/src/js/bootstrap.bundle.min.js"></script>
+
+<!-- custom js -->
+<script src="./js/script.js"></script>
+
 </body>
 
 </html>

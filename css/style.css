@@ -1,0 +1,103 @@
+.btn {
+  box-shadow: none !important;
+}
+
+input.form-control {
+  box-shadow: none !important;
+}
+input.form-control:focus {
+  border: 1px solid black;
+}
+
+select.form-select {
+  box-shadow: none !important;
+}
+select.form-select:focus {
+  border: 1px solid black;
+}
+
+table.table_sea thead {
+  background-color: rgb(84, 184, 171);
+}
+td {
+  border: 1px solid black;
+}
+table.table_sea thead > tr > th {
+  color: white;
+}
+
+body#login {
+  margin: 0;
+  padding: 0;
+}
+body#login {
+  background-color: rgb(211, 214, 222);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vw;
+}
+
+body#login .login-form-container {
+  border: 1px solid black;
+  width: 500px;
+  padding: 20px 50px 50px 50px;
+}
+body#login .login-form-container input {
+  border-radius: 0px !important;
+  border: 1px solid black;
+  border-right: 0px;
+}
+body#login .login-form-container i {
+  color: black;
+}
+body#login .login-form-container .icon {
+  padding: 10px;
+  min-width: 50px;
+  text-align: center;
+  border: 1px solid black;
+  border-left: 0px;
+}
+
+body#login .login-form-container a {
+  text-decoration: none;
+  color: rgb(84, 184, 171);
+}
+
+/* input date customization */
+
+input[type="date"] {
+  position: relative;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  color: transparent;
+  background: none;
+  z-index: 1;
+}
+
+input[type="date"]:before {
+  color: transparent;
+  background: none;
+  display: block;
+  font-family: "FontAwesome";
+  content: "\f073";
+  width: 15px;
+  height: 20px;
+  position: absolute;
+  top: 20%;
+  right: 6px;
+  color: rgb(84, 184, 171);
+}
+
+span.fa-calendar {
+  color: rgb(84, 184, 171);
+}
+
+body#personal_detail_form_body div.row {
+  margin-bottom: 30px;
+}
+body#personal_detail_form_body select:focus{
+  box-shadow: none !important;
+}

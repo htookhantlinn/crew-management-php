@@ -25,6 +25,16 @@ if (session_status() == PHP_SESSION_NONE) {
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
+    <!-- Bootstrap Core -->
+    <link rel="stylesheet" href="./node_modules/bootstrap5/src/css/bootstrap.min.css">
+
+    <!-- custom css -->
+
+    <link rel="stylesheet" href="./css/style.css">
+
+    <!--  Font Awesone -->
+    <script src="https://kit.fontawesome.com/ba7f482478.js" crossorigin="anonymous"></script>
+
 </head>
 
 <body id="page-top">
@@ -36,7 +46,7 @@ if (session_status() == PHP_SESSION_NONE) {
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -76,6 +86,37 @@ if (session_status() == PHP_SESSION_NONE) {
                         <a class="collapse-item" href="student_registration.php">Student</a>
                     </div>
                 </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link " href="#">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Crew</span>
+                </a>
+
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link " href="#">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Services</span>
+                </a>
+
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="#">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Certificate</span>
+                </a>
+
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link " href="#">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Salary</span>
+                </a>
+
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
