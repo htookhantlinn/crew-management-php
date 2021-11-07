@@ -28,8 +28,13 @@ if (session_status() == PHP_SESSION_NONE) {
     <!-- Bootstrap Core -->
     <link rel="stylesheet" href="./node_modules/bootstrap5/src/css/bootstrap.min.css">
 
-    <!-- custom css -->
+    <!-- Bootstrap Date Picker CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
 
+    <!-- Datatable CSS start -->
+    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+    <!-- custom css -->
     <link rel="stylesheet" href="./css/style.css">
 
     <!--  Font Awesone -->
@@ -58,7 +63,7 @@ if (session_status() == PHP_SESSION_NONE) {
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="index.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -89,7 +94,7 @@ if (session_status() == PHP_SESSION_NONE) {
             </li>
 
             <li class="nav-item">
-                <a class="nav-link " href="#">
+                <a class="nav-link " href="crew_index.php">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Crew</span>
                 </a>

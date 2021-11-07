@@ -58,13 +58,25 @@
 <script src="js/demo/chart-area-demo.js"></script>
 <script src="js/demo/chart-pie-demo.js"></script>
 
-<!-- jquery core -->
+<!-- jquery core  -->
 <script src="./node_modules/jquery/dist/jquery.min.js"></script>
-<!-- jquery repeater -->
-<script src="./node_modules/jquery.repeater/jquery.repeater.min.js"></script>
 
 <!-- bootstrap core -->
 <script src="./node_modules/bootstrap5/src/js/bootstrap.bundle.min.js"></script>
+
+<!-- Bootstrap Date Picker JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+
+<!-- jquery repeater -->
+<script src="./node_modules/jquery.repeater/jquery.repeater.min.js"></script>
+
+<!-- data table start  -->
+<script src="vendor/datatables/jquery.dataTables.min.js"></script>
+<script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+<script src="js/demo/datatables-demo.js"></script>
+<!-- data table end  -->
+
 
 <!-- custom js -->
 <script src="./js/script.js"></script>

@@ -1,5 +1,6 @@
 .btn {
   box-shadow: none !important;
+  
 }
 
 input.form-control {
@@ -91,7 +92,7 @@ input[type="date"]:before {
   color: rgb(84, 184, 171);
 }
 
-span.fa-calendar {
+.fa-calendar {
   color: rgb(84, 184, 171);
 }
 

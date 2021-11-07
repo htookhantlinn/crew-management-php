@@ -105,7 +105,14 @@ include_once('./master_layouts/header.php');
         <div class="row">
             <div class="col-md-4">
                 <label class="form-label">Birth:</label>
-                <input type="date" class="form-control" id="dob" name="dob" placeholder=0>
+                <div class="input-group date">
+                    <input type="text" name='dob' class="datepicker form-control">
+                    <span class="input-group-append">
+                        <span class="input-group-text d-block">
+                            <i class="fa fa-calendar"></i>
+                        </span>
+                    </span>
+                </div>
             </div>
             <div class="col-md-4">
                 <label class="form-label">Proposed Vsl*:</label>
@@ -163,7 +170,14 @@ include_once('./master_layouts/header.php');
             </div>
             <div class="col-md-4">
                 <label class="form-label">Apply Date:</label>
-                <input type="date" class="form-control" id="apply_date" name="apply_date" placeholder=0>
+                <div class="input-group date">
+                    <input type="text" id="apply_date" name="apply_date" class="datepicker form-control">
+                    <span class="input-group-append">
+                        <span class="input-group-text  d-block">
+                            <i class="fa fa-calendar"></i>
+                        </span>
+                    </span>
+                </div>
             </div>
             <div class="col-md-4">
                 <label class="form-label">Net of kin *:</label>
@@ -177,11 +191,25 @@ include_once('./master_layouts/header.php');
             </div>
             <div class="col-md-4">
                 <label class="form-label">Passport Date:</label>
-                <input type="date" class="form-control" id="passport_date" name="passport_date">
+                <div class="input-group date">
+                    <input type="text" id="passport_date" name="passport_date" class="datepicker form-control">
+                    <span class="input-group-append">
+                        <span class="input-group-text  d-block">
+                            <i class="fa fa-calendar"></i>
+                        </span>
+                    </span>
+                </div>
             </div>
             <div class="col-md-4">
                 <label class="form-label">Passport Expired Date:</label>
-                <input type="date" class="form-control" id="passport_expired_date" name="passport_expired_date">
+                <div class="input-group date">
+                    <input type="text" id="passport_expired_date" name="passport_expired_date" class="datepicker form-control">
+                    <span class="input-group-append">
+                        <span class="input-group-text  d-block">
+                            <i class="fa fa-calendar"></i>
+                        </span>
+                    </span>
+                </div>
             </div>
 
         </div>
@@ -192,11 +220,27 @@ include_once('./master_layouts/header.php');
             </div>
             <div class="col-md-4">
                 <label class="form-label">S Book Date:</label>
-                <input type="date" class="form-control" id="sbook_date" name="sbook_date">
+                <div class="input-group date">
+                    <input type="text" id="sbook_date" name="sbook_date" class="datepicker form-control">
+                    <span class="input-group-append">
+                        <span class="input-group-text  d-block">
+                            <i class="fa fa-calendar"></i>
+                        </span>
+                    </span>
+                </div>
+
+
             </div>
             <div class="col-md-4">
                 <label class="form-label">S Book Expired Date:</label>
-                <input type="date" class="form-control" id="sbook_expired_date" name="sbook_expired_date">
+                <div class="input-group date">
+                    <input type="text" id="sbook_expired_date" name="sbook_expired_date" class="datepicker form-control">
+                    <span class="input-group-append">
+                        <span class="input-group-text  d-block">
+                            <i class="fa fa-calendar"></i>
+                        </span>
+                    </span>
+                </div>
             </div>
 
         </div>
@@ -207,11 +251,25 @@ include_once('./master_layouts/header.php');
             </div>
             <div class="col-md-4">
                 <label class="form-label">License Date:</label>
-                <input type="date" class="form-control" id="License_date" name="License_date">
+                <div class="input-group date">
+                    <input type="text" id="License_date" name="License_date" class="datepicker form-control">
+                    <span class="input-group-append">
+                        <span class="input-group-text  d-block">
+                            <i class="fa fa-calendar"></i>
+                        </span>
+                    </span>
+                </div>
             </div>
             <div class="col-md-4">
                 <label class="form-label">License Expired Date:</label>
-                <input type="date" class="form-control" id="License_expired_date" name="License_expired_date">
+                <div class="input-group date">
+                    <input type="text" id="License_expired_date" name="License_expired_date" class="datepicker form-control">
+                    <span class="input-group-append">
+                        <span class="input-group-text  d-block">
+                            <i class="fa fa-calendar"></i>
+                        </span>
+                    </span>
+                </div>
             </div>
 
         </div>

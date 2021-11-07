@@ -10,7 +10,7 @@ class Crew
     {
         $this->pdo = Database::connect();
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        
+
         $sql = "insert into crew (firstname,middlename,lastname,father_name,mother_name,nationality,birthdate,rank,vessel_type,final_school,martial_status,waistline,uniform_size,
         blood_type,safeshoe,health_status,bank_info,tel1,tel2,address,city,english_level,application_date,passportno,passportdate,
         passportexpiredate,sbookno,sbookdate,sbookexpire,lincece,licencedate,licen_expire) 
@@ -58,6 +58,42 @@ class Crew
         } else {
             return false;
         }
+        Database::disconnect();
+    }
+
+    public function get_all_crew()
+
+    {
+        $this->pdo = Database::connect();
+        $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $sql  = "select * from crew";
+
+        $statement = $this->pdo->prepare($sql);
+
+        $statement->execute();
+
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+
+        Database::disconnect();
+    }
+
+    public function get_crew_by_id($cid)
+
+    {
+        $this->pdo = Database::connect();
+        $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $sql  = "select * from crew where id=:cid";
+
+        $statement = $this->pdo->prepare($sql);
+        $statement->bindParam("cid",$cid);
+        $statement->execute();
+
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+        return $result;
+
         Database::disconnect();
     }
 }
