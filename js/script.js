@@ -8,11 +8,5 @@ $(document).ready(function () {
     });
 
 
-    // $(function () {
-    //     $('.date').datepicker({
-    //         format: 'dd/mm/yyyy'
-    //     });
-    // });
-
-
+ 
 });
