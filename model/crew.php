@@ -6,15 +6,15 @@ class Crew
 {
     private $pdo;
 
-    public function insertCrew($firstname, $middelname, $lastname, $father_name, $mother_name, $nationality, $birthdate, $rank, $vessel_type, $final_school, $martial_status, $waistline, $uniform_size, $blood_type, $safeshoe, $health_status, $bank_info, $tel1, $tel2, $address, $city, $english_level, $application_date, $passportno, $passportdate, $passportexpiredate, $sbookno, $sbookdate, $sbookexpire, $lincece, $licencedate, $licen_expire): bool
+    public function insertCrew($firstname, $middelname, $lastname, $father_name, $mother_name, $nationality, $birthdate, $rank, $vessel_type, $final_school, $martial_status, $waistline, $uniform_size, $blood_type, $safeshoe, $health_status, $bank_info, $tel1, $tel2, $address, $city, $english_level, $application_date, $passportno, $passportdate, $passportexpiredate, $sbookno, $sbookdate, $sbookexpire, $lincece, $licencedate, $licen_expire, $image): bool
     {
         $this->pdo = Database::connect();
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         $sql = "insert into crew (firstname,middlename,lastname,father_name,mother_name,nationality,birthdate,rank,vessel_type,final_school,martial_status,waistline,uniform_size,
         blood_type,safeshoe,health_status,bank_info,tel1,tel2,address,city,english_level,application_date,passportno,passportdate,
-        passportexpiredate,sbookno,sbookdate,sbookexpire,lincece,licencedate,licen_expire) 
-        values (:firstname,:middelname,:lastname,:father_name,:mother_name,:nationality,:birthdate,:rank,:vessel_type,:final_school,:martial_status,:waistline,:uniform_size,:blood_type,:safeshoe,:health_status,:bank_info,:tel1,:tel2,:address,:city,:english_level,:application_date,:passportno,:passportdate,:passportexpiredate,:sbookno,:sbookdate,:sbookexpire,:lincece,:licencedate,:licen_expire) ";
+        passportexpiredate,sbookno,sbookdate,sbookexpire,lincece,licencedate,licen_expire,image) 
+        values (:firstname,:middelname,:lastname,:father_name,:mother_name,:nationality,:birthdate,:rank,:vessel_type,:final_school,:martial_status,:waistline,:uniform_size,:blood_type,:safeshoe,:health_status,:bank_info,:tel1,:tel2,:address,:city,:english_level,:application_date,:passportno,:passportdate,:passportexpiredate,:sbookno,:sbookdate,:sbookexpire,:lincece,:licencedate,:licen_expire,:image) ";
 
 
         $statement = $this->pdo->prepare($sql);
@@ -51,6 +51,8 @@ class Crew
         $statement->bindParam("lincece", $lincece);
         $statement->bindParam("licencedate", $licencedate);
         $statement->bindParam("licen_expire", $licen_expire);
+        $statement->bindParam("image", $image);
+
 
 
         if ($statement->execute()) {
@@ -88,11 +90,57 @@ class Crew
         $sql  = "select * from crew where id=:cid";
 
         $statement = $this->pdo->prepare($sql);
-        $statement->bindParam("cid",$cid);
+        $statement->bindParam("cid", $cid);
         $statement->execute();
 
         $result = $statement->fetch(PDO::FETCH_ASSOC);
         return $result;
+
+        Database::disconnect();
+    }
+
+    public function delete_crew_by_id($cid)
+    {
+        $this->pdo = Database::connect();
+        $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $sql  = "delete  from crew where id=:cid";
+
+        $statement = $this->pdo->prepare($sql);
+        $statement->bindParam("cid", $cid);
+        if ($statement->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+
+        Database::disconnect();
+    }
+
+    public function update_crew_by_id($cid, $firstname, $lastname, $nationality, $rank, $vessel_type, $sbookno, $image)
+    {
+        $this->pdo = Database::connect();
+        $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $sql = "UPDATE crew SET firstname=:firstname, lastname=:lastname, nationality=:nationality, rank=:rank, vessel_type=:vessel_type, sbookno=:sbookno, image=:image  WHERE id=:cid";
+
+        $statement = $this->pdo->prepare($sql);
+
+        $statement->bindParam("cid", $cid);
+        $statement->bindParam("firstname", $firstname);
+        $statement->bindParam("lastname", $lastname);
+        $statement->bindParam("nationality", $nationality);
+        $statement->bindParam("rank", $rank);
+        $statement->bindParam("vessel_type", $vessel_type);
+        $statement->bindParam("sbookno", $sbookno);
+        $statement->bindParam("image", $image);
+
+
+        if ($statement->execute()) {
+            return true;
+        } else {
+            return false;
+        }
 
         Database::disconnect();
     }

@@ -20,7 +20,7 @@ include_once('./master_layouts/header.php');
         </div>
         <div class="col-md-6">
             <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Last Name</label>
+                <label class="form-label">Last Name</label>
                 <input type="text" class="form-control" disabled value="<?php echo $result['lastname'] ?>">
             </div>
         </div>
@@ -32,7 +32,7 @@ include_once('./master_layouts/header.php');
         </div>
         <div class="col-md-6">
             <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Rank </label>
+                <label class="form-label">Rank </label>
                 <input type="text" class="form-control" disabled value="<?php echo $result['rank'] ?>">
             </div>
         </div>
@@ -44,8 +44,16 @@ include_once('./master_layouts/header.php');
         </div>
         <div class="col-md-6">
             <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">SBook NO</label>
+                <label class="form-label">SBook NO</label>
                 <input type="text" class="form-control" disabled value="<?php echo $result['sbookno'] ?>">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="mb-3">
+                <label class="form-label">Profile Photo</label>
+                <?php
+                    echo '<img style="width: 100px; height:100px;" src="data:image/jpeg;base64,'.base64_encode( $result['image'] ).'" />';
+                ?>
             </div>
         </div>
     </div>

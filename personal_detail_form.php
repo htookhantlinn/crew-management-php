@@ -46,16 +46,44 @@ if (isset($_POST['submit'])) {
     $License_date = $_POST['License_date'];
     $License_expired_date = $_POST['License_expired_date'];
 
+    //profile photo အတွက် 
+    $profile_photo = $_FILES['profile_photo'];
 
+    $profile_photo_name = $profile_photo['name']; //hkl.jpg
+    $profile_photo_ext = explode('.', $profile_photo_name);
+    $file_actual_ext = strtolower(end($profile_photo_ext));
 
+    $allowed = ['jpeg', 'jpg', 'png', 'pdf'];
+    if (in_array($file_actual_ext, $allowed)) {
+        if ($profile_photo['error'] == 0) {
+            if ($profile_photo['size'] < 500000) {
+
+                //ဒီ project ထဲ မှာ ရှိတယ့် uploads Folder ထဲမှာ file သွား save ထားတာ 
+                $file_new_name = uniqid("Crew" . $sbook_number . "_", true) . "." . $file_actual_ext;
+                $filedestination = "/Applications/XAMPP/xamppfiles/htdocs/sb-admin-pages/uploads/" . $file_new_name;
+                move_uploaded_file($profile_photo['tmp_name'], $filedestination);
+            }
+        }
+    }
+    $image;
+    if (!empty($_FILES['profile_photo']['tmp_name'])) {
+        $image = file_get_contents($_FILES['profile_photo']['tmp_name']);
+    } else {
+        $image = $profile_photo;
+    }
+    // print_r($image);
     $crew_controller = new CrewController();
-    $crew_controller->addCrew($person_name, $middle_name, $sur_name, $father_name, $mother_name, $nationality, $dob, $rank, $applied_velssel_type, $final_school, $martial_status, $net_waistline, $uniform_size, $blood_type, $safe_shoe, $health_inspection, $bank_info, $telephone_one, $telephone_two, $home_address, $city_select, $english_capability, $apply_date, $passport_number, $passport_date, $passport_expired_date, $sbook_number, $sbook_date, $sbook_expired_date, $licensed_number, $License_date, $License_expired_date);
+    $crew_controller->addCrew($person_name, $middle_name, $sur_name, $father_name, $mother_name, $nationality, $dob, $rank, $applied_velssel_type, $final_school, $martial_status, $net_waistline, $uniform_size, $blood_type, $safe_shoe, $health_inspection, $bank_info, $telephone_one, $telephone_two, $home_address, $city_select, $english_capability, $apply_date, $passport_number, $passport_date, $passport_expired_date, $sbook_number, $sbook_date, $sbook_expired_date, $licensed_number, $License_date, $License_expired_date, $image);
+
+    // print_r($profile_photo_file_ext);
+    // print_r($profile_photo_name);
+
 }
 
 include_once('./master_layouts/header.php');
 
 ?>
-<form method="post">
+<form method="post" enctype="multipart/form-data">
 
 
     <div class="container-fluid mt-5">
@@ -329,6 +357,10 @@ include_once('./master_layouts/header.php');
             <div class="col-md-8">
                 <label class="form-label"> Bank Info:</label>
                 <input type="text" class="form-control" id="bank_info" name="bank_info" placeholder="Enter Bank Info  ">
+            </div>
+            <div class="col-md-4">
+                <label class="form-label"> Profile Photo:</label>
+                <input name="profile_photo" type="file">
             </div>
 
         </div>

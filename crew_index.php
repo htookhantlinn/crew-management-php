@@ -1,7 +1,12 @@
 <?php
 include_once('./controller/CrewController.php');
-
 $crew_controller = new CrewController();
+
+if (!empty($_GET['cid'])) {
+    $cid = $_GET['cid'];
+    $crew_controller->delete_crew($cid);
+}
+
 $result =  $crew_controller->show_all_crew();
 
 ?>
@@ -9,14 +14,14 @@ $result =  $crew_controller->show_all_crew();
 include_once('./master_layouts/header.php');
 ?>
 
-
 <div class="crew-index-contents-container container-fluid ">
     <a class="btn btn-outline-secondary float-end me-2 " href="personal_detail_form.php"> <i class="fa fa-download" aria-hidden="true"></i> Add Crew</a>
 
-    <table class="table table-striped " id="dataTable" >
+    <table class="table table-striped  " id="dataTable">
         <thead>
             <tr>
                 <th scope="col">#</th>
+                <th scope="col">Image</th>
                 <th scope="col">First Name</th>
                 <th scope="col">Last Name</th>
                 <th scope="col">Nationality</th>
@@ -32,13 +37,14 @@ include_once('./master_layouts/header.php');
             foreach ($result as  $x) {
                 echo "<tr>";
                 echo "<td>" . $count++ . "</td>";
+                echo "<td>" . ' <img style="width: 100px; height:100px;" src="data:image/jpeg;base64,' . base64_encode($x['image']) . '" />' . "</td>";
                 echo "<td>" . $x['firstname'] . "</td>";
                 echo "<td>" . $x['lastname'] . "</td>";
                 echo "<td>" . $x['nationality'] . "</td>";
                 echo "<td>" . $x['rank'] . "</td>";
                 echo "<td>" . $x['vessel_type'] . "</td>";
                 echo "<td>" . $x['sbookno'] . "</td>";
-                echo "<td><a  href='crew_detail.php?cid=".$x['id']."' class=' m-1 btn btn-outline-info'>Read</a><a class=' m-1 btn btn-outline-warning'>Edit</a><a class=' m-1 btn btn-outline-danger'>Delete</a></td>";
+                echo "<td><a  href='crew_detail.php?cid=" . $x['id'] . "' class=' m-1 btn btn-outline-info'>Read</a><a  href='crew_edit_form.php?cid=" . $x['id'] . "'class=' m-1 btn btn-outline-warning'>Edit</a><a href='crew_index.php?cid=" . $x['id'] . "' class=' m-1 btn btn-outline-danger' onclick=\"return confirm('Delete this record?')\" >Delete</a></td>";
                 echo "</tr>";
             }
             ?>
