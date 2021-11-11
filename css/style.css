@@ -102,3 +102,9 @@ body#personal_detail_form_body div.row {
 body#personal_detail_form_body select:focus{
   box-shadow: none !important;
 }
+
+#certificate_name,
+#certificate_name_update{
+  border: 1px rgb(21, 104, 212) solid;
+  width: 400px;
+}

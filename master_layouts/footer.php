@@ -52,11 +52,11 @@
 <script src="js/sb-admin-2.min.js"></script>
 
 <!-- Page level plugins -->
-<script src="vendor/chart.js/Chart.min.js"></script>
+<!-- <script src="vendor/chart.js/Chart.min.js"></script> -->
 
 <!-- Page level custom scripts -->
-<script src="js/demo/chart-area-demo.js"></script>
-<script src="js/demo/chart-pie-demo.js"></script>
+<!-- <script src="js/demo/chart-area-demo.js"></script>
+<script src="js/demo/chart-pie-demo.js"></script> -->
 
 <!-- jquery core  -->
 <script src="./node_modules/jquery/dist/jquery.min.js"></script>
@@ -80,6 +80,8 @@
 
 <!-- custom js -->
 <script src="./js/script.js"></script>
+
+
 
 </body>
 

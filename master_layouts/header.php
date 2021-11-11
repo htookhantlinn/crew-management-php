@@ -95,7 +95,7 @@ if (session_status() == PHP_SESSION_NONE) {
 
             <li class="nav-item">
                 <a class="nav-link " href="crew_index.php">
-                    <i class="fas fa-fw fa-cog"></i>
+                    <i class="fa fa-ship" aria-hidden="true"></i>
                     <span>Crew</span>
                 </a>
 
@@ -103,14 +103,14 @@ if (session_status() == PHP_SESSION_NONE) {
 
             <li class="nav-item">
                 <a class="nav-link " href="#">
-                    <i class="fas fa-fw fa-cog"></i>
+                    <i class="fab fa-servicestack"></i>
                     <span>Services</span>
                 </a>
 
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="#">
-                    <i class="fas fa-fw fa-cog"></i>
+                <a class="nav-link " href="certificate_index.php">
+                    <i class="fas fa-certificate    "></i>
                     <span>Certificate</span>
                 </a>
 
@@ -118,8 +118,23 @@ if (session_status() == PHP_SESSION_NONE) {
 
             <li class="nav-item">
                 <a class="nav-link " href="#">
-                    <i class="fas fa-fw fa-cog"></i>
+                    <i class="fa fa-paypal" aria-hidden="true"></i>
                     <span>Salary</span>
+                </a>
+
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="city_index.php">
+                    <i class="fas fa-city    "></i>
+                    <span>City</span>
+                </a>
+
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link " href="vessel_index.php">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Vessel</span>
                 </a>
 
             </li>

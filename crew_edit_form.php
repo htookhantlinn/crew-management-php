@@ -1,5 +1,7 @@
 <?php
 include_once('./controller/CrewController.php');
+
+//ဒေတာဘေ့စ် ထဲ က ဒေ တာတွေ ကို ဖောင်ပေါ် ပြန်တင်တာ 
 if (!empty($_GET['cid'])) {
     //
     if (session_status() == PHP_SESSION_NONE) {
@@ -17,7 +19,7 @@ $crew_controller = new CrewController();
 $result =  $crew_controller->show_crew_info($cid);
 
 if (isset($_POST['update_btn'])) {
-   
+
     $firstname =  $_POST['firstname'];
     $lastname =  $_POST['lastname'];
     $nationality =  $_POST['nationality'];
@@ -37,8 +39,6 @@ if (isset($_POST['update_btn'])) {
         //ပရိုဖိုင် ဖိုတိုကို ရွေးလိုက်တယ့် လမ်းကြောင်း
         if ($profile_photo['error'] == 0) {
             if ($profile_photo['size'] < 500000) {
-
-                // $db = mysqli_connect("localhost", "root", "", "crew-db"); //keep your db name
                 $image = file_get_contents($_FILES['profile_photo_update']['tmp_name']);
 
                 if ($crew_controller->update_crew($cid, $firstname, $lastname, $nationality, $rank, $vessel_type, $sbookno, $image)) {
@@ -54,6 +54,7 @@ if (isset($_POST['update_btn'])) {
             }
         }
     } else {
+        //profile photo အသစ် ထပ်မရွေးခဲ့ရင် အဟောင်းကိုပြန်ထည့်တာ 
         $result =  $crew_controller->show_crew_info($cid);
         $image = $result['image'];
         if ($crew_controller->update_crew($cid, $firstname, $lastname, $nationality, $rank, $vessel_type, $sbookno, $image)) {
@@ -111,14 +112,14 @@ include_once('./master_layouts/header.php');
                 <div class="mb-3">
                     <label class="form-label">Old Profile Photo ::</label>
                     <?php
-                    echo '<img class="shadow" style="width: 100px; height:100px;" src="data:image/jpeg;base64,' . base64_encode($result['image']) . '" />';
+                    echo '<img id="profile_photo_update_img" class="shadow" style="width: 100px; height:100px;" src="data:image/jpeg;base64,' . base64_encode($result['image']) . '" />';
                     ?>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="mb-3">
                     <label class="form-label">Upload Your New Profile Photo ::</label><br />
-                    <input type="file" name="profile_photo_update"  />
+                    <input type="file" name="profile_photo_update" id="profile_photo_update" />
                 </div>
             </div>
             <div class="col-md-12 d-flex justify-content-center align-items-center">

@@ -1,13 +1,13 @@
 <?php
 include_once('db.php');
-class City
+class Certificate
 {
     private $pdo;
-    public function insert_city($name)
+    public function insert_certificate($name)
     {
         $this->pdo = Database::connect();
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "insert into city (name) values (:name) ";
+        $sql = "insert into certificate (name) values (:name) ";
 
         $statement = $this->pdo->prepare($sql);
 
@@ -20,12 +20,12 @@ class City
         Database::disconnect();
     }
 
-    public function get_all_city()
+    public function get_all_certificate()
     {
         $this->pdo = Database::connect();
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $sql  = "select * from city";
+        $sql  = "select * from certificate";
 
         $statement = $this->pdo->prepare($sql);
 
@@ -37,16 +37,16 @@ class City
         Database::disconnect();
     }
 
-    public function select_city_by_id($city_id)
+    public function select_certificate_by_id($cert_id)
 
     {
         $this->pdo = Database::connect();
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $sql  = "select * from city where id=:city_id";
+        $sql  = "select * from certificate where id=:cert_id";
 
         $statement = $this->pdo->prepare($sql);
-        $statement->bindParam("city_id", $city_id);
+        $statement->bindParam("cert_id", $cert_id);
         $statement->execute();
 
         $result = $statement->fetch(PDO::FETCH_ASSOC);
@@ -54,15 +54,15 @@ class City
 
         Database::disconnect();
     }
-    public function delete_city_by_id($city_id)
+    public function delete_certificate_by_id($cert_id)
     {
         $this->pdo = Database::connect();
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $sql  = "delete  from city where id=:city_id";
+        $sql  = "delete  from certificate where id=:cert_id";
 
         $statement = $this->pdo->prepare($sql);
-        $statement->bindParam("city_id", $city_id);
+        $statement->bindParam("cert_id", $cert_id);
         if ($statement->execute()) {
             return true;
         } else {
@@ -72,17 +72,17 @@ class City
         Database::disconnect();
     }
 
-    public function update_city_by_id($city_id,$city_name_update)
+    public function update_certificate_by_id($cert_id,$certificate_name_update)
     {
         $this->pdo = Database::connect();
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $sql = "UPDATE city SET name=:city_name_update WHERE id=:city_id";
+        $sql = "UPDATE certificate SET name=:certificate_name_update WHERE id=:cert_id";
 
         $statement = $this->pdo->prepare($sql);
 
-        $statement->bindParam("city_id", $city_id);
-        $statement->bindParam("city_name_update", $city_name_update);
+        $statement->bindParam("cert_id", $cert_id);
+        $statement->bindParam("certificate_name_update", $certificate_name_update);
 
         if ($statement->execute()) {
             return true;

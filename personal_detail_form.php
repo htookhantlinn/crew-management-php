@@ -46,38 +46,36 @@ if (isset($_POST['submit'])) {
     $License_date = $_POST['License_date'];
     $License_expired_date = $_POST['License_expired_date'];
 
-    //profile photo အတွက် 
-    $profile_photo = $_FILES['profile_photo'];
 
-    $profile_photo_name = $profile_photo['name']; //hkl.jpg
-    $profile_photo_ext = explode('.', $profile_photo_name);
-    $file_actual_ext = strtolower(end($profile_photo_ext));
-
-    $allowed = ['jpeg', 'jpg', 'png', 'pdf'];
-    if (in_array($file_actual_ext, $allowed)) {
-        if ($profile_photo['error'] == 0) {
-            if ($profile_photo['size'] < 500000) {
-
-                //ဒီ project ထဲ မှာ ရှိတယ့် uploads Folder ထဲမှာ file သွား save ထားတာ 
-                $file_new_name = uniqid("Crew" . $sbook_number . "_", true) . "." . $file_actual_ext;
-                $filedestination = "/Applications/XAMPP/xamppfiles/htdocs/sb-admin-pages/uploads/" . $file_new_name;
-                move_uploaded_file($profile_photo['tmp_name'], $filedestination);
-            }
-        }
-    }
-    $image;
     if (!empty($_FILES['profile_photo']['tmp_name'])) {
         $image = file_get_contents($_FILES['profile_photo']['tmp_name']);
     } else {
-        $image = $profile_photo;
+        $image = null;
     }
-    // print_r($image);
     $crew_controller = new CrewController();
-    $crew_controller->addCrew($person_name, $middle_name, $sur_name, $father_name, $mother_name, $nationality, $dob, $rank, $applied_velssel_type, $final_school, $martial_status, $net_waistline, $uniform_size, $blood_type, $safe_shoe, $health_inspection, $bank_info, $telephone_one, $telephone_two, $home_address, $city_select, $english_capability, $apply_date, $passport_number, $passport_date, $passport_expired_date, $sbook_number, $sbook_date, $sbook_expired_date, $licensed_number, $License_date, $License_expired_date, $image);
+    if ($crew_controller->addCrew($person_name, $middle_name, $sur_name, $father_name, $mother_name, $nationality, $dob, $rank, $applied_velssel_type, $final_school, $martial_status, $net_waistline, $uniform_size, $blood_type, $safe_shoe, $health_inspection, $bank_info, $telephone_one, $telephone_two, $home_address, $city_select, $english_capability, $apply_date, $passport_number, $passport_date, $passport_expired_date, $sbook_number, $sbook_date, $sbook_expired_date, $licensed_number, $License_date, $License_expired_date, $image)) {
+        //profile photo အတွက် 
+        $profile_photo = $_FILES['profile_photo'];
 
-    // print_r($profile_photo_file_ext);
-    // print_r($profile_photo_name);
+        $profile_photo_name = $profile_photo['name']; //hkl.jpg
+        $profile_photo_ext = explode('.', $profile_photo_name);
+        $file_actual_ext = strtolower(end($profile_photo_ext));
 
+        $allowed = ['jpeg', 'jpg', 'png', 'pdf'];
+        if (in_array($file_actual_ext, $allowed)) {
+            if ($profile_photo['error'] == 0) {
+                if ($profile_photo['size'] < 500000) {
+
+                    //ဒီ project ထဲ မှာ ရှိတယ့် uploads Folder ထဲမှာ file သွား save ထားတာ 
+                    $file_new_name = uniqid("Crew" . $sbook_number . "_", true) . "." . $file_actual_ext;
+                    $filedestination = "/Applications/XAMPP/xamppfiles/htdocs/sb-admin-pages/uploads/" . $file_new_name;
+                    move_uploaded_file($profile_photo['tmp_name'], $filedestination);
+                }
+            }
+        }
+
+        header("location:crew_index.php");
+    }
 }
 
 include_once('./master_layouts/header.php');
@@ -91,15 +89,15 @@ include_once('./master_layouts/header.php');
         <div class="row">
             <div class="col-md-4">
                 <label class="form-label">Person Name*:</label>
-                <input type="text" class="form-control" id="person_name" name="person_name" placeholder="Enter Person Name">
+                <input type="text" class="form-control" id="person_name" name="person_name" placeholder="Enter Person Name" required>
             </div>
             <div class="col-md-4">
                 <label class="form-label">Middle Name*:</label>
-                <input type="text" class="form-control" id="middle_name" name="middle_name" placeholder="Enter Middle Name">
+                <input type="text" class="form-control" id="middle_name" name="middle_name" placeholder="Enter Middle Name" required>
             </div>
             <div class="col-md-4">
                 <label class="form-label">Surname Name*:</label>
-                <input type="text" class="form-control" id="sur_name" name="sur_name" placeholder="Enter Surname">
+                <input type="text" class="form-control" id="sur_name" name="sur_name" placeholder="Enter Surname" required>
             </div>
         </div>
         <div class="row">
@@ -123,11 +121,11 @@ include_once('./master_layouts/header.php');
             </div>
             <div class="col-md-4">
                 <label class="form-label">Rank*:</label>
-                <input type="text" class="form-control" id="rank" name="rank" placeholder="Enter Rank">
+                <input type="text" class="form-control" id="rank" name="rank" placeholder="Enter Rank" required>
             </div>
             <div class="col-md-4">
                 <label class="form-label">Applied vessel type *:</label>
-                <input type="text" class="form-control" id="applied_velssel_type" name="applied_velssel_type" placeholder="Enter Applied Vessel Type">
+                <input type="text" class="form-control" id="applied_velssel_type" name="applied_velssel_type" placeholder="Enter Applied Vessel Type" required>
             </div>
         </div>
         <div class="row">
@@ -244,7 +242,7 @@ include_once('./master_layouts/header.php');
         <div class="row">
             <div class="col-md-4">
                 <label class="form-label"> S Book No *:</label>
-                <input type="text" class="form-control" id="sbook_number" name="sbook_number" placeholder="Enter  sbook No ">
+                <input type="text" class="form-control" id="sbook_number" name="sbook_number" placeholder="Enter  sbook No " required>
             </div>
             <div class="col-md-4">
                 <label class="form-label">S Book Date:</label>
@@ -353,14 +351,17 @@ include_once('./master_layouts/header.php');
             </div>
 
         </div>
-        <div class="row">
-            <div class="col-md-8">
+        <div class="row mt-3">
+            <div class="col-md-6">
                 <label class="form-label"> Bank Info:</label>
                 <input type="text" class="form-control" id="bank_info" name="bank_info" placeholder="Enter Bank Info  ">
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <label class="form-label"> Profile Photo:</label>
-                <input name="profile_photo" type="file">
+                <input name="profile_photo" type="file" id="profile_photo_input">
+            </div>
+            <div class="col-md-3">
+                <img id="blah" src="./img/no_profile.png" alt="your image" style="width: 100px; height: 100px;" />
             </div>
 
         </div>

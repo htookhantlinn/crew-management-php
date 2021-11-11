@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preview Image Test</title>
+</head>
+
+<body>
+
+    <input accept="image/*" type='file' id="imgInp" />
+    <img id="blah" src="#" alt="your image" style="width: 100px; height: 100px;" />
+
+
+
+    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+    <script>
+        $('#imgInp').on('change', function () {
+            const [file] = imgInp.files;
+            if (file) {
+                blah.src = URL.createObjectURL(file)
+            }
+            console.log(file);
+            console.log('changing in selection files ');
+        });
+    </script>
+</body>
+
+</html>
