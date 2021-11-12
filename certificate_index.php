@@ -28,7 +28,7 @@ $result = $certificate_controller->show_all_certificate();
                 echo "<tr>";
                 echo "<td>" . $count++ . "</td>";
                 echo "<td>" . $x['name'] .  "</td>";
-                echo "<td><a  href='certificate_detail_form.php?cert_id=" . $x['id'] . "' class=' m-1 btn btn-outline-info'>Read</a><a  href='certificate_edit_form.php?cert_id=" . $x['id'] . "'class=' m-1 btn btn-outline-warning'>Edit</a><a href='certificate_index.php?cert_id=" . $x['id'] . "' class=' m-1 btn btn-outline-danger' onclick=\"return confirm('Delete this record?')\" >Delete</a></td>";
+                echo "<td><a  href='certificate_detail_form.php?cert_id=" . $x['id'] . "' class=' m-1 btn btn-outline-info'><i class=\"fas fa-eye\"></i></a><a  href='certificate_edit_form.php?cert_id=" . $x['id'] . "'class=' m-1 btn btn-outline-warning'><i class=\"fas fa-edit\"></i></a><a href='certificate_index.php?cert_id=" . $x['id'] . "' class=' m-1 btn btn-outline-danger' onclick=\"return confirm('Delete this record?')\" ><i class=\"fa fa-trash\" aria-hidden=\"true\"></i></a></td>";
                 echo "</tr>";
             }
             ?>

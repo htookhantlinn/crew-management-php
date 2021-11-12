@@ -28,6 +28,14 @@ $(document).ready(function () {
         console.log('changing in selection files ');
     });
 
+    $('.delete').on('click', () => {
+        console.log('delete button click ');
+        $result = confirm('Are you sure want to delete ? ');
+        if($result){
+            console.log($(this).parents.attr('city_id'));
+        }
+    });
+
 
 });
 console.log('this is script js');

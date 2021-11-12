@@ -67,7 +67,7 @@ if (isset($_POST['submit'])) {
                 if ($profile_photo['size'] < 500000) {
 
                     //ဒီ project ထဲ မှာ ရှိတယ့် uploads Folder ထဲမှာ file သွား save ထားတာ 
-                    $file_new_name = uniqid("Crew" . $sbook_number . "_", true) . "." . $file_actual_ext;
+                    $file_new_name = uniqid("Crew_" . $sbook_number . "_", true) . "." . $file_actual_ext;
                     $filedestination = "/Applications/XAMPP/xamppfiles/htdocs/sb-admin-pages/uploads/" . $file_new_name;
                     move_uploaded_file($profile_photo['tmp_name'], $filedestination);
                 }
@@ -77,7 +77,6 @@ if (isset($_POST['submit'])) {
         header("location:crew_index.php");
     }
 }
-
 include_once('./master_layouts/header.php');
 
 ?>
@@ -125,7 +124,13 @@ include_once('./master_layouts/header.php');
             </div>
             <div class="col-md-4">
                 <label class="form-label">Applied vessel type *:</label>
-                <input type="text" class="form-control" id="applied_velssel_type" name="applied_velssel_type" placeholder="Enter Applied Vessel Type" required>
+                <!-- <input type="text" class="form-control" id="applied_velssel_type" name="applied_velssel_type" placeholder="Enter Applied Vessel Type" required> -->
+                <select class="form-select" id="applied_velssel_type" name="applied_velssel_type" >
+                    <option selected>Tanker</option>
+                    <option value="Bulk Carrier">Bulk Carrier</option>
+                    <option value="General Cargo Vessels">General Cargo Vessels</option>
+                    <option value="Reefer Vessels">Reefer Vessels</option>
+                </select>
             </div>
         </div>
         <div class="row">

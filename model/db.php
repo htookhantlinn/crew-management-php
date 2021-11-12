@@ -4,7 +4,7 @@
 // error_reporting(E_ALL);
 class Database
 {
-    private static $dbName = 'crew-db';
+    private static $dbName = 'crew_db';
     private static $dbHost = 'localhost';
     private static $dbUsername = 'root';
     private static $dbUserPassword = '';     
