@@ -53,7 +53,9 @@ if (isset($_POST['submit'])) {
         $image = null;
     }
     $crew_controller = new CrewController();
-    if ($crew_controller->addCrew($person_name, $middle_name, $sur_name, $father_name, $mother_name, $nationality, $dob, $rank, $applied_velssel_type, $final_school, $martial_status, $net_waistline, $uniform_size, $blood_type, $safe_shoe, $health_inspection, $bank_info, $telephone_one, $telephone_two, $home_address, $city_select, $english_capability, $apply_date, $passport_number, $passport_date, $passport_expired_date, $sbook_number, $sbook_date, $sbook_expired_date, $licensed_number, $License_date, $License_expired_date, $image)) {
+
+    try {
+        $crew_controller->addCrew($person_name, $middle_name, $sur_name, $father_name, $mother_name, $nationality, $dob, $rank, $applied_velssel_type, $final_school, $martial_status, $net_waistline, $uniform_size, $blood_type, $safe_shoe, $health_inspection, $bank_info, $telephone_one, $telephone_two, $home_address, $city_select, $english_capability, $apply_date, $passport_number, $passport_date, $passport_expired_date, $sbook_number, $sbook_date, $sbook_expired_date, $licensed_number, $License_date, $License_expired_date, $image);
         //profile photo အတွက် 
         $profile_photo = $_FILES['profile_photo'];
 
@@ -75,6 +77,9 @@ if (isset($_POST['submit'])) {
         }
 
         header("location:crew_index.php");
+    } catch (\Throwable $th) {
+        //throw $th;
+        var_dump($th);
     }
 }
 include_once('./master_layouts/header.php');
@@ -125,7 +130,7 @@ include_once('./master_layouts/header.php');
             <div class="col-md-4">
                 <label class="form-label">Applied vessel type *:</label>
                 <!-- <input type="text" class="form-control" id="applied_velssel_type" name="applied_velssel_type" placeholder="Enter Applied Vessel Type" required> -->
-                <select class="form-select" id="applied_velssel_type" name="applied_velssel_type" >
+                <select class="form-select" id="applied_velssel_type" name="applied_velssel_type">
                     <option selected>Tanker</option>
                     <option value="Bulk Carrier">Bulk Carrier</option>
                     <option value="General Cargo Vessels">General Cargo Vessels</option>
