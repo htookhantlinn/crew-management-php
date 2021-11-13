@@ -79,7 +79,7 @@ if (isset($_POST['submit'])) {
         header("location:crew_index.php");
     } catch (\Throwable $th) {
         //throw $th;
-        var_dump($th);
+        print_r($th);
     }
 }
 include_once('./master_layouts/header.php');
