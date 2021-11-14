@@ -108,3 +108,9 @@ body#personal_detail_form_body select:focus{
   border: 1px rgb(21, 104, 212) solid;
   width: 400px;
 }
+
+.read_form_container,
+.edit_form_container{
+  border: 1px solid black;
+}
+

@@ -28,11 +28,27 @@ $(document).ready(function () {
         console.log('changing in selection files ');
     });
 
-    $('.delete').on('click', () => {
+    $('body').on('click', '.delete',  (event) => {
+
         console.log('delete button click ');
         $result = confirm('Are you sure want to delete ? ');
-        if($result){
-            console.log($(this).parents.attr('city_id'));
+        if ($result) {
+            console.log('hi');
+            event.preventDefault();
+            var city_id = $('.delete').parents('.selected').attr('city_id');
+            console.log(city_id);
+            $.ajax({
+                type: "post",
+                url: "delete_city.php",
+                data: { id: city_id },
+                error: () => {
+                    alert('failed to delete');
+                },
+                success: function (returnResult) {
+                    console.log(returnResult);
+                    $('tbody').html(returnResult);
+                }
+            });
         }
     });
 

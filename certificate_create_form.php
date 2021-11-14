@@ -14,7 +14,7 @@ include_once('./master_layouts/header.php');
 <div class=" container  d-flex justify-content-center align-items-center " style="height: 400px;">
     <form method="post">
         <div class=" m-3 ">
-            <input class=" form-control " type="text" name="certificate_name" id="certificate_name" placeholder="Enter Certificate name " required />
+            <input class=" form-control " type="text" name="certificate_name" id="certificate_name" placeholder="Enter Certificate name " required autofocus />
         </div>
         <div class=" m-3   d-flex justify-content-center align-items-center">
             <input class=" btn btn-outline-dark" type="submit" name="certificate_create_submit" id="certificate_create_submit" />

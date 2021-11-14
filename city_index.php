@@ -29,9 +29,14 @@ $result = $city_controller->show_all_city();
                 echo "<tr>";
                 echo "<td>" . $count++ . "</td>";
                 echo "<td>" . $x['name'] .  "</td>";
-                echo "<td><a  href='city_detail_form.php?city_id=" . $x['id'] . "' class=' m-1 btn btn-outline-info'><i class=\"fas fa-eye\"></i></a><a  href='city_edit_form.php?city_id=" . $x['id'] . "'class=' m-1 btn btn-outline-warning'><i class=\"fas fa-edit\"></i></a><a href='city_index.php?city_id=" . $x['id'] . "' class=' m-1 btn btn-outline-danger' onclick=\"return confirm('Delete this record?')\" ><i class=\"fa fa-trash\" aria-hidden=\"true\"></i></a>
-                <a class=' m-1 btn btn-outline-danger delete' >
-                Test</a>
+                echo "<td class='selected' city_id = '" . $x['id'] .  "'><a  href='city_detail_form.php?city_id=" . $x['id'] . "' class=' m-1 btn btn-outline-info'><i class=\"fas fa-eye\"></i></a><a  href='city_edit_form.php?city_id=" . $x['id'] . "'class=' m-1 btn btn-outline-warning'><i class=\"fas fa-edit\"></i></a>
+                
+                <a href='city_index.php?city_id=" . $x['id'] . "' class=' m-1 btn btn-outline-danger' onclick=\"return confirm('Delete this record?')\" ><i class=\"fa fa-trash\" aria-hidden=\"true\"></i></a>
+
+                
+                        <a class=' m-1 btn btn-outline-danger delete' >
+                                Test
+                        </a>
                 </td>";
                 echo "</tr>";
             }

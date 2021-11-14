@@ -29,7 +29,7 @@ include_once('./master_layouts/header.php');
 <div class=" container  d-flex justify-content-center align-items-center " style="height: 400px;">
     <form method="post">
         <div class=" m-3 ">
-            <input class=" form-control " type="text" value="<?php echo $result['name'] ?>" name="certificate_name_update" id="certificate_name_update" placeholder="Enter Certificate name " required />
+            <input class=" form-control " type="text" value="<?php echo $result['name'] ?>" name="certificate_name_update" id="certificate_name_update" placeholder="Enter Certificate name " required autofocus />
         </div>
         <div class=" m-3   d-flex justify-content-center align-items-center">
             <input class=" btn btn-outline-dark" value="UPDATE" type="submit" name="certificate_update_submit" id="certificate_update_submit" />

@@ -1,6 +1,9 @@
 <?php
 
 include_once('./controller/CrewController.php');
+include_once('./controller/VesselController.php');
+$vessel_controller = new VesselController();
+$vessel_list = $vessel_controller->show_all_vessel();
 if (isset($_POST['submit'])) {
     $person_name = $_POST['person_name'];
     $middle_name = $_POST['middle_name'];
@@ -90,7 +93,7 @@ include_once('./master_layouts/header.php');
 
     <div class="container-fluid mt-5">
 
-        <div class="row">
+        <div class="row mb-4 ">
             <div class="col-md-4">
                 <label class="form-label">Person Name*:</label>
                 <input type="text" class="form-control" id="person_name" name="person_name" placeholder="Enter Person Name" required>
@@ -104,7 +107,7 @@ include_once('./master_layouts/header.php');
                 <input type="text" class="form-control" id="sur_name" name="sur_name" placeholder="Enter Surname" required>
             </div>
         </div>
-        <div class="row">
+        <div class="row mb-4 ">
             <div class="col-md-4">
                 <label class="form-label">Father Name*:</label>
                 <input type="text" class="form-control" id="father_name" name="father_name" placeholder="Enter Father Name">
@@ -118,27 +121,26 @@ include_once('./master_layouts/header.php');
                 <input type="text" class="form-control" id="nationality" name="nationality" placeholder="Enter Nationality">
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-4">
-                <label class="form-label">Age:</label>
-                <input type="number" class="form-control" id="age" name="age" placeholder=0>
-            </div>
+        <div class="row mb-4 ">
+            
             <div class="col-md-4">
                 <label class="form-label">Rank*:</label>
                 <input type="text" class="form-control" id="rank" name="rank" placeholder="Enter Rank" required>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-8">
                 <label class="form-label">Applied vessel type *:</label>
                 <!-- <input type="text" class="form-control" id="applied_velssel_type" name="applied_velssel_type" placeholder="Enter Applied Vessel Type" required> -->
                 <select class="form-select" id="applied_velssel_type" name="applied_velssel_type">
-                    <option selected>Tanker</option>
-                    <option value="Bulk Carrier">Bulk Carrier</option>
-                    <option value="General Cargo Vessels">General Cargo Vessels</option>
-                    <option value="Reefer Vessels">Reefer Vessels</option>
+                    <?php
+                    foreach ($vessel_list as $x) {
+                        echo "<option value='".$x['id']."'>".$x['name']."</option>";
+                    }
+                    ?>
+                  
                 </select>
             </div>
         </div>
-        <div class="row">
+        <div class="row mb-4 ">
             <div class="col-md-4">
                 <label class="form-label">Birth:</label>
                 <div class="input-group date">
@@ -164,7 +166,7 @@ include_once('./master_layouts/header.php');
                 <input type="text" class="form-control" id="final_school" name="final_school" placeholder="Enter Final School">
             </div>
         </div>
-        <div class="row">
+        <div class="row mb-4 ">
             <div class="col-md-4">
                 <label class="form-label">Martial Status:</label>
                 <input type="text" class="form-control" id="martial_status" name="martial_status" placeholder="Enter Martial Status">
@@ -179,7 +181,7 @@ include_once('./master_layouts/header.php');
             </div>
 
         </div>
-        <div class="row">
+        <div class="row mb-4 ">
             <div class="col-md-6">
                 <label class="form-label">Home Address:</label>
                 <input type="text" class="form-control" id="home_address" name="home_address" placeholder="Enter Home Address">
@@ -199,7 +201,7 @@ include_once('./master_layouts/header.php');
             </div>
 
         </div>
-        <div class="row">
+        <div class="row mb-4 ">
             <div class="col-md-4">
                 <label class="form-label">English Capability *:</label>
                 <input type="text" class="form-control" id="english_capability" name="english_capability" placeholder="Enter English Capability">
@@ -220,7 +222,7 @@ include_once('./master_layouts/header.php');
                 <input type="text" class="form-control" id="net_of_kin" name="net_of_kin" placeholder="Enter Net of kin">
             </div>
         </div>
-        <div class="row">
+        <div class="row mb-4 ">
             <div class="col-md-4">
                 <label class="form-label"> Passport No *:</label>
                 <input type="text" class="form-control" id="passport_number" name="passport_number" placeholder="Enter  Passport No ">
@@ -249,7 +251,7 @@ include_once('./master_layouts/header.php');
             </div>
 
         </div>
-        <div class="row">
+        <div class="row mb-4 ">
             <div class="col-md-4">
                 <label class="form-label"> S Book No *:</label>
                 <input type="text" class="form-control" id="sbook_number" name="sbook_number" placeholder="Enter  sbook No " required>
@@ -280,7 +282,7 @@ include_once('./master_layouts/header.php');
             </div>
 
         </div>
-        <div class="row">
+        <div class="row mb-4 ">
             <div class="col-md-4">
                 <label class="form-label"> License</label>
                 <input type="text" class="form-control" id="license" name="license" placeholder="Enter License  ">
@@ -309,7 +311,7 @@ include_once('./master_layouts/header.php');
             </div>
 
         </div>
-        <div class="row">
+        <div class="row mb-4 ">
             <div class="col-md-4">
                 <label class="form-label"> License No*:</label>
                 <input type="text" class="form-control" id="licensed_number" name="licensed_number" placeholder="Enter License Number  ">
@@ -341,7 +343,7 @@ include_once('./master_layouts/header.php');
                 <input type="number" class="form-control" name="height" id="height" placeholder=0>
             </div>
         </div>
-        <div class="row">
+        <div class="row mb-4 ">
             <div class="col-md-4">
                 <label class="form-label"> Nok Relationship:</label>
                 <input type="text" class="form-control" id="nok_relationship" name="nok_relationship" placeholder="Enter Nok Relationship  ">
@@ -361,7 +363,7 @@ include_once('./master_layouts/header.php');
             </div>
 
         </div>
-        <div class="row mt-3">
+        <div class="row mb-4  mt-3">
             <div class="col-md-6">
                 <label class="form-label"> Bank Info:</label>
                 <input type="text" class="form-control" id="bank_info" name="bank_info" placeholder="Enter Bank Info  ">
@@ -376,7 +378,7 @@ include_once('./master_layouts/header.php');
 
         </div>
 
-        <div class="row mt-2">
+        <div class="row mb-4  mt-2">
             <div class="col-md-4">
 
             </div>

@@ -117,22 +117,116 @@ class Crew
         Database::disconnect();
     }
 
-    public function update_crew_by_id($cid, $firstname, $lastname, $nationality, $rank, $vessel_type, $sbookno, $image)
-    {
+    public function update_crew_by_id(
+        $cid,
+        $firstname,
+        $middle_name,
+        $lastname,
+        $father_name,
+        $mother_name,
+        $nationality,
+        $rank,
+        $vessel_type,
+        $sbookno,
+        $final_school,
+        $martial_status,
+        $net_waistline,
+        $uniform_size,
+        $blood_type,
+        $safe_shoe,
+        $health_inspection,
+        $bank_info,
+        $telephone_one,
+        $telephone_two,
+        $home_address,
+        $city_select,
+        $english_capability,
+        $birth_date,
+        $apply_date,
+        $passport_number,
+        $passport_date,
+        $passport_expired_date,
+        $sbook_date,
+        $sbook_expired_date,
+        $licensed_number,
+        $License_date,
+        $License_expired_date,
+        $image
+    ) {
         $this->pdo = Database::connect();
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $sql = "UPDATE crew SET firstname=:firstname, lastname=:lastname, nationality=:nationality, rank=:rank, vessel_type=:vessel_type, sbookno=:sbookno, image=:image  WHERE id=:cid";
+        $sql = "UPDATE crew SET 
+        firstname=:firstname,
+        middlename=:middle_name,
+        lastname=:lastname, 
+        father_name=:father_name, 
+        mother_name=:mother_name,
+        nationality=:nationality, 
+        rank=:rank, 
+        vessel_type=:vessel_type, 
+        sbookno=:sbookno, 
+        final_school=:final_school, 
+        martial_status=:martial_status,
+        waistline=:net_waistline,
+        uniform_size=:uniform_size,
+        blood_type=:blood_type,
+        safeshoe=:safe_shoe,
+        health_status=:health_inspection,
+        bank_info=:bank_info,
+        tel1=:telephone_one,
+        tel2=:telephone_two,
+        address=:home_address,
+        city=:city_select,
+        english_level=:english_capability,
+        birthdate=:birth_date,
+        application_date=:apply_date,
+        passportno=:passport_number,
+        passportdate=:passport_date,
+        passportexpiredate=:passport_expired_date,
+        sbookdate=:sbook_date,
+        sbookexpire=:sbook_expired_date,
+        lincece=:licensed_number,
+        licencedate=:License_date,
+        licen_expire=:License_expired_date,
+        image=:image  
+        WHERE id=:cid";
 
         $statement = $this->pdo->prepare($sql);
 
         $statement->bindParam("cid", $cid);
         $statement->bindParam("firstname", $firstname);
+        $statement->bindParam("middle_name", $middle_name);
         $statement->bindParam("lastname", $lastname);
+        $statement->bindParam("father_name", $father_name);
+        $statement->bindParam("mother_name", $mother_name);
         $statement->bindParam("nationality", $nationality);
         $statement->bindParam("rank", $rank);
         $statement->bindParam("vessel_type", $vessel_type);
         $statement->bindParam("sbookno", $sbookno);
+        $statement->bindParam("final_school", $final_school);
+        $statement->bindParam("martial_status", $martial_status);
+        $statement->bindParam("net_waistline", $net_waistline);
+        $statement->bindParam("uniform_size", $uniform_size);
+        $statement->bindParam("blood_type", $blood_type);
+        $statement->bindParam("safe_shoe", $safe_shoe);
+        $statement->bindParam("health_inspection", $health_inspection);
+        $statement->bindParam("bank_info", $bank_info);
+        $statement->bindParam("telephone_one", $telephone_one);
+        $statement->bindParam("telephone_two", $telephone_two);
+        $statement->bindParam("home_address", $home_address);
+        $statement->bindParam("city_select", $city_select);
+        $statement->bindParam("english_capability", $english_capability);
+        $statement->bindParam("birth_date", $birth_date);
+        $statement->bindParam("apply_date", $apply_date);
+        $statement->bindParam("passport_number", $passport_number);
+        $statement->bindParam("passport_date", $passport_date);
+        $statement->bindParam("passport_expired_date", $passport_expired_date);
+        $statement->bindParam("sbook_date", $sbook_date);
+        $statement->bindParam("sbook_expired_date", $sbook_expired_date);
+        $statement->bindParam("licensed_number", $licensed_number);
+        $statement->bindParam("License_date", $License_date);
+        $statement->bindParam("License_expired_date", $License_expired_date);
         $statement->bindParam("image", $image);
 
 
@@ -144,4 +238,5 @@ class Crew
 
         Database::disconnect();
     }
+
 }

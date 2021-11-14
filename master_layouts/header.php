@@ -136,6 +136,13 @@ if (session_status() == PHP_SESSION_NONE) {
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Vessel</span>
                 </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link " href="personalInfos.php">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Personal</span>
+                </a>
 
             </li>
 
@@ -405,7 +412,7 @@ if (session_status() == PHP_SESSION_NONE) {
                                     Activity Log
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="login.php" >
+                                <a class="dropdown-item" href="login.php">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>

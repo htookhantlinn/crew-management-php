@@ -14,7 +14,7 @@ include_once('./master_layouts/header.php');
 <div class=" container  d-flex justify-content-center align-items-center " style="height: 400px;">
     <form method="post">
         <div class=" m-3 ">
-            <input class=" form-control " type="text" name="city_name" id="city_name" placeholder="Enter City name " required />
+            <input class=" form-control " type="text" name="city_name" id="city_name" placeholder="Enter City name " autofocus required />
         </div>
         <div class=" m-3   d-flex justify-content-center align-items-center">
             <input class=" btn btn-outline-dark" type="submit" name="city_create_submit" id="city_create_submit" />
