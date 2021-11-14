@@ -13,8 +13,11 @@ $result =  $crew_controller->show_crew_info($cid);
 <?php
 include_once('./master_layouts/header.php');
 ?>
-
+<?php
+echo "<a  href='crew_edit_form.php?cid=" . $result['id'] . "'class=' float-end me-5 btn btn-outline-warning'>Edit</a>";
+?>
 <div class="shadow  container-fluid p-5 ">
+
     <div class="read_form_container container p-3">
         <div class=" row ">
             <div class="col-md-5"></div>
@@ -72,8 +75,8 @@ include_once('./master_layouts/header.php');
                 <div class="mb-3">
                     <label class="form-label">Vessel Type</label>
                     <input type="text" class="form-control" disabled value="<?php
-                        echo $vessel_controller->get_vessel_by_id($result['vessel_type'])['name'];
-                      ?> 
+                                                                            echo $vessel_controller->get_vessel_by_id($result['vessel_type'])['name'];
+                                                                            ?> 
                     ">
                 </div>
             </div>

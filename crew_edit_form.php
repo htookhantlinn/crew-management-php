@@ -179,6 +179,9 @@ if (isset($_POST['update_btn'])) {
 include_once('./master_layouts/header.php');
 ?>
 
+<?php
+echo "<a  href='crew_detail.php?cid=" . $result['id'] . "'class=' float-end me-5 btn btn-outline-info'>Read</a>";
+?>
 <form method="POST" enctype="multipart/form-data">
 
     <div class="  container-fluid p-5 ">
@@ -277,17 +280,16 @@ include_once('./master_layouts/header.php');
                     </div>
                 </div>
 
-
-
-
                 <div class="col-md-4">
                     <div class="mb-3">
                         <label class="form-label">Uniform Size</label>
                         <select class="form-select form-select" id="uniform_size" name="uniform_size">
-                            <option selected>XL</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                            <option value="XS" selected>XS</option>
+                            <option value="S">S</option>
+                            <option value="M">M</option>
+                            <option value="L">L</option>
+                            <option value="XL">XL</option>
+                            <option value="XXL">XXL</option>
                         </select>
                     </div>
                 </div>

@@ -122,7 +122,7 @@ include_once('./master_layouts/header.php');
             </div>
         </div>
         <div class="row mb-4 ">
-            
+
             <div class="col-md-4">
                 <label class="form-label">Rank*:</label>
                 <input type="text" class="form-control" id="rank" name="rank" placeholder="Enter Rank" required>
@@ -133,10 +133,10 @@ include_once('./master_layouts/header.php');
                 <select class="form-select" id="applied_velssel_type" name="applied_velssel_type">
                     <?php
                     foreach ($vessel_list as $x) {
-                        echo "<option value='".$x['id']."'>".$x['name']."</option>";
+                        echo "<option value='" . $x['id'] . "'>" . $x['name'] . "</option>";
                     }
                     ?>
-                  
+
                 </select>
             </div>
         </div>
@@ -319,10 +319,12 @@ include_once('./master_layouts/header.php');
             <div class="col-md-2">
                 <label class="form-label"> Uniform Size*:</label>
                 <select class="form-select form-select" id="uniform_size" name="uniform_size">
-                    <option selected>XL</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                    <option value="XS" selected>XS</option>
+                    <option value="S" >S</option>
+                    <option value="M" >M</option>
+                    <option value="L" >L</option>
+                    <option value="XL" >XL</option>
+                    <option value="XXL" >XXL</option>
                 </select>
             </div>
             <div class="col-md-2">

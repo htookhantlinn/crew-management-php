@@ -29,8 +29,7 @@ include_once('./master_layouts/header.php');
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Image</th>
-                <th scope="col">First Name</th>
-                <th scope="col">Last Name</th>
+                <th scope="col">Person Name</th>
                 <th scope="col">Nationality</th>
                 <th scope="col">Rank</th>
                 <th scope="col">Vessel Type</th>
@@ -45,8 +44,7 @@ include_once('./master_layouts/header.php');
                 echo "<tr>";
                 echo "<td>" . $count++ . "</td>";
                 echo "<td>" . ' <img style="width: 100px; height:100px;" src="data:image/jpeg;base64,' . base64_encode($x['image']) . '" />' . "</td>";
-                echo "<td>" . $x['firstname'] . "</td>";
-                echo "<td>" . $x['lastname'] . "</td>";
+                echo "<td>" . $x['firstname'].' ' .$x['middlename'].' ' .$x['lastname'] . "</td>";
                 echo "<td>" . $x['nationality'] . "</td>";
                 echo "<td>" . $x['rank'] . "</td>";
                 // $rs = $vessel_controller->get_vessel_by_id($x['vessel_type']);
