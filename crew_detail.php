@@ -75,7 +75,7 @@ echo "<a  href='crew_edit_form.php?cid=" . $result['id'] . "'class=' float-end m
                 <div class="mb-3">
                     <label class="form-label">Vessel Type</label>
                     <input type="text" class="form-control" disabled value="<?php
-                                                                            echo $vessel_controller->get_vessel_by_id($result['vessel_type'])['name'];
+                                                                            echo $result['name']
                                                                             ?> 
                     ">
                 </div>

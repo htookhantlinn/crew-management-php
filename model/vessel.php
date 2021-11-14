@@ -37,6 +37,8 @@ class Vessel
         Database::disconnect();
     }
 
+    
+
     public function select_vessel_by_id($vessel_id)
 
     {

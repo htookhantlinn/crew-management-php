@@ -87,7 +87,9 @@ class Crew
         $this->pdo = Database::connect();
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $sql  = "select * from crew where id=:cid";
+        //$sql  = "select * from crew where id =:cid";
+        
+        $sql  = "SELECT c.id,c.firstname,c.middlename,c.lastname,c.father_name,c.mother_name,c.nationality,c.birthdate,c.rank,c.vessel_type,c.final_school,c.martial_status,c.waistline,c.uniform_size,c.blood_type,c.safeshoe,c.health_status,c.bank_info,c.tel1,c.tel2,c.address,c.city,c.english_level,c.application_date,c.passportno,c.passportdate,c.passportexpiredate,c.sbookno,c.sbookdate,c.sbookexpire,c.lincece,c.licencedate,c.licen_expire,c.image,c.file_destination,v.name from crew as c JOIN vessel as v WHERE c.vessel_type=v.id AND c.id=:cid";
 
         $statement = $this->pdo->prepare($sql);
         $statement->bindParam("cid", $cid);
@@ -239,4 +241,21 @@ class Crew
         Database::disconnect();
     }
 
+    //join two tables (crew and vessel ) table
+    public function get_all_crew_join_table()
+    {
+        $this->pdo = Database::connect();
+        $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        // $sql  = "SELECT * from crew as c JOIN vessel as v WHERE c.vessel_type=v.id;";
+        $sql = "SELECT c.id,c.firstname,c.middlename,c.lastname,c.father_name,c.mother_name,c.nationality,c.birthdate,c.rank,c.vessel_type,c.final_school,c.martial_status,c.waistline,c.uniform_size,c.blood_type,c.safeshoe,c.health_status,c.bank_info,c.tel1,c.tel2,c.address,c.city,c.english_level,c.application_date,c.passportno,c.passportdate,c.passportexpiredate,c.sbookno,c.sbookdate,c.sbookexpire,c.lincece,c.licencedate,c.licen_expire,c.image,c.file_destination,v.name from crew as c JOIN vessel as v WHERE c.vessel_type=v.id ";
+        $statement = $this->pdo->prepare($sql);
+
+        $statement->execute();
+
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+
+        Database::disconnect();
+    }
 }

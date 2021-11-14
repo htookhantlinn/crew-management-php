@@ -3,18 +3,23 @@ include_once('./controller/CrewController.php');
 include_once('./controller/VesselController.php');
 
 
-$vessel_controller = new VesselController();
-$vessel_list = $vessel_controller->show_all_vessel();
+
 
 
 $crew_controller = new CrewController();
+// $vessel_controller = new VesselController();
+
+// $join_table_result = $crew_controller->show_all_crew_join_table();
+
+
 
 if (!empty($_GET['cid'])) {
     $cid = $_GET['cid'];
+    // echo $cid;
     $crew_controller->delete_crew($cid);
 }
 
-$result =  $crew_controller->show_all_crew();
+$result =  $crew_controller->show_all_crew_join_table();
 
 ?>
 <?php
@@ -44,12 +49,12 @@ include_once('./master_layouts/header.php');
                 echo "<tr>";
                 echo "<td>" . $count++ . "</td>";
                 echo "<td>" . ' <img style="width: 100px; height:100px;" src="data:image/jpeg;base64,' . base64_encode($x['image']) . '" />' . "</td>";
-                echo "<td>" . $x['firstname'].' ' .$x['middlename'].' ' .$x['lastname'] . "</td>";
+                echo "<td>" . $x['firstname'] . ' ' . $x['middlename'] . ' ' . $x['lastname'] . "</td>";
                 echo "<td>" . $x['nationality'] . "</td>";
                 echo "<td>" . $x['rank'] . "</td>";
-                // $rs = $vessel_controller->get_vessel_by_id($x['vessel_type']);
-                // var_dump($rs);
-                echo "<td>" .  $vessel_controller->get_vessel_by_id($x['vessel_type'])['name']. "</td>";
+                // Vessel Controller သုံးရင် ဒါကိုကူး 
+                //$vessel_controller->get_vessel_by_id($x['vessel_type'])['name']
+                echo "<td>" . $x['name']. "</td>";
                 echo "<td>" . $x['sbookno'] . "</td>";
                 echo "<td><a  href='crew_detail.php?cid=" . $x['id'] . "' class=' m-1 btn btn-outline-info'><i class=\"fas fa-eye\"></i></a><a  href='crew_edit_form.php?cid=" . $x['id'] . "'class=' m-1 btn btn-outline-warning'><i class=\"fas fa-edit\"></i></a><a href='crew_index.php?cid=" . $x['id'] . "' class=' m-1 btn btn-outline-danger' onclick=\"return confirm('Delete this record?')\" > <i class=\"fa fa-trash\" aria-hidden=\"true\"></i></a></td>";
                 echo "</tr>";

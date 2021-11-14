@@ -56,43 +56,47 @@ class CrewController extends Crew
         $License_date,
         $License_expired_date,
         $image
-    )
+    ) {
+        return $this->update_crew_by_id(
+            $cid,
+            $firstname,
+            $middle_name,
+            $lastname,
+            $father_name,
+            $mother_name,
+            $nationality,
+            $rank,
+            $vessel_type,
+            $sbookno,
+            $final_school,
+            $martial_status,
+            $net_waistline,
+            $uniform_size,
+            $blood_type,
+            $safe_shoe,
+            $health_inspection,
+            $bank_info,
+            $telephone_one,
+            $telephone_two,
+            $home_address,
+            $city_select,
+            $english_capability,
+            $birth_date,
+            $apply_date,
+            $passport_number,
+            $passport_date,
+            $passport_expired_date,
+            $sbook_date,
+            $sbook_expired_date,
+            $licensed_number,
+            $License_date,
+            $License_expired_date,
+            $image
+        );
+    }
+
+    public function show_all_crew_join_table()
     {
-       return $this->update_crew_by_id(
-        $cid,
-        $firstname,
-        $middle_name,
-        $lastname,
-        $father_name,
-        $mother_name,
-        $nationality,
-        $rank,
-        $vessel_type,
-        $sbookno,
-        $final_school,
-        $martial_status,
-        $net_waistline,
-        $uniform_size,
-        $blood_type,
-        $safe_shoe,
-        $health_inspection,
-        $bank_info,
-        $telephone_one,
-        $telephone_two,
-        $home_address,
-        $city_select,
-        $english_capability,
-        $birth_date,
-        $apply_date,
-        $passport_number,
-        $passport_date,
-        $passport_expired_date,
-        $sbook_date,
-        $sbook_expired_date,
-        $licensed_number,
-        $License_date,
-        $License_expired_date,
-        $image
-    );
+       return $this->get_all_crew_join_table();
     }
 }
