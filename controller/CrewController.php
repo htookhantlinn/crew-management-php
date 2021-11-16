@@ -99,4 +99,9 @@ class CrewController extends Crew
     {
        return $this->get_all_crew_join_table();
     }
+
+    public function select_id_by_sbookNo($sbookno)
+    {
+        return $this->get_id_by_sbookNo($sbookno);
+    }
 }

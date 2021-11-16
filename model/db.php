@@ -5,7 +5,7 @@
 class Database
 {
     private static $dbName = 'crew_db';
-    private static $dbHost = '127.0.0.1';
+    private static $dbHost = 'localhost';
     private static $dbUsername = 'root';
     private static $dbUserPassword = '';     
     private static $cont  = null;

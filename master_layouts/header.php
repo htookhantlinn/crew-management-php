@@ -146,6 +146,15 @@ if (session_status() == PHP_SESSION_NONE) {
 
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link " href="mandatory_certificates.php">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>MandatoryCertificates</span>
+                </a>
+
+            </li>
+            
+
             <!-- Nav Item - Utilities Collapse Menu -->
             <!-- <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">

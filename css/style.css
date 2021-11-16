@@ -1,6 +1,5 @@
 .btn {
-  box-shadow: none !important;
-  
+  box-shadow: none;
 }
 
 input.form-control {
@@ -99,18 +98,28 @@ input[type="date"]:before {
 body#personal_detail_form_body div.row {
   margin-bottom: 30px;
 }
-body#personal_detail_form_body select:focus{
+body#personal_detail_form_body select:focus {
   box-shadow: none !important;
 }
 
 #certificate_name,
-#certificate_name_update{
+#certificate_name_update {
   border: 1px rgb(21, 104, 212) solid;
   width: 400px;
 }
 
 .read_form_container,
-.edit_form_container{
+.edit_form_container {
   border: 1px solid black;
 }
+.certificate-table thead tr td {
+  border-bottom-color: rgb(84, 184, 171) !important;
+}
 
+input::-webkit-calendar-picker-indicator {
+  display: none;
+}
+
+#browser:hover input::-webkit-calendar-picker-indicator {
+  display: none;
+}
