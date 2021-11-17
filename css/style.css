@@ -123,3 +123,6 @@ input::-webkit-calendar-picker-indicator {
 #browser:hover input::-webkit-calendar-picker-indicator {
   display: none;
 }
+.error_text {
+  color: red;
+}

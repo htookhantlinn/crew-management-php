@@ -7,9 +7,14 @@ $crew_controller = new CrewController();
 $certificate_controller = new CertificateController();
 $crew_cert_controller = new CrewCertificateController();
 
+
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
 $crew_list = $crew_controller->show_all_crew_join_table();
 $certificate_list = $certificate_controller->show_all_certificate();
-echo 'outside';
+
 if (isset($_POST['mandatory_cert_submit_btn'])) {
     $crew = $_POST['crew'];
     $temp = explode('(', $crew);
@@ -20,51 +25,68 @@ if (isset($_POST['mandatory_cert_submit_btn'])) {
 
     $temp = explode(')', $sb_raw);
     $sbook_no = $temp[0];
-    echo $sbook_no;
-
-    $crew = $crew_controller->select_id_by_sbookNo($sbook_no);
+    $_SESSION['selectedCrew'] = $crew;
+    $flag = true;
     foreach ($certificate_list as  $x) {
-        // echo count($certificate_list);
-        echo '<br/>';
 
         $date_issued = $_POST['dateIssued_' . $x['id']];
         $number = $_POST['number_' . $x['id']];
         $date_expired = $_POST['dateExpired_' . $x['id']];
-        // echo $date_issued . ':::' . strlen($date_issued) . ':::' . gettype(strlen($date_issued)) . ':::' . isset($date_issued);
-        // echo '<br/>';
-        // echo $number . ':::' . strlen($number) . ':::' . gettype(strlen($number)) . ':::' . isset($number);
-        // echo '<br/>';
-        // echo $date_expired . ':::' . strlen($date_expired) . ':::' . gettype(strlen($date_expired)) . ':::' . isset($date_expired);
-        // echo '<br/>';
-        // echo '<br/>';
+        if (strlen($date_issued) > 0  ||  strlen($number) > 0  ||  strlen($date_expired) > 0) {
 
-        if (strlen($date_issued) > 0  ||  strlen($number) > 0  ||  strlen($date_expired)) {
-            echo '<b>This is Greater than Zero</b>';
-            if (strlen($date_issued) > 0  &&  strlen($number) > 0  &&  strlen($date_expired)) {
-                echo "Three are greater than zero";
-                $crew_cert_controller->add_crew_cert($crew['id'], $x['id'], $date_issued, $number, $date_expired, $sbook_no);
+            if (strlen($date_issued) == 0  ||  strlen($number) == 0  ||  strlen($date_expired) == 0) {
+                $flag = false;
+            }
+        }
+    }
+
+
+    $crew = $crew_controller->select_id_by_sbookNo($sbook_no);
+    foreach ($certificate_list as  $x) {
+
+        $date_issued = $_POST['dateIssued_' . $x['id']];
+        $number = $_POST['number_' . $x['id']];
+        $date_expired = $_POST['dateExpired_' . $x['id']];
+
+        if (strlen($date_issued) > 0  ||  strlen($number) > 0  ||  strlen($date_expired) > 0) {
+            //   row ထဲ က column  တခုခုပါလာတာ 
+            if (strlen($date_issued) > 0  &&  strlen($number) > 0  &&  strlen($date_expired) > 0) {
+                //သုံးခုလုံးကို user က ထည့်လိုက်ပီ
+
+                if ($flag) {
+                    $crew_cert_controller->add_crew_cert($crew['id'], $x['id'], $date_issued, $number, $date_expired, $sbook_no);
+                } else {
+                    $_SESSION['date_issued_' . $x['id']] = $date_issued;
+                    $_SESSION['date_expired_' . $x['id']] = $date_expired;
+                    $_SESSION['number_' . $x['id']] = $number;
+                }
             } else {
-                // echo '<br/> else cond arrived <br/>';
-                // echo strlen('<br/>'.$date_issued) . '<br/>';
-                // echo strlen($date_expired) . '<br/>';
-                // echo strlen($number) . '<br/>';
-                // echo gettype(strlen($number)) . '<br/>';
+
+                // column တ ခု ခု လို နေ 
                 if (strlen($date_issued) == 0) {
-                    echo ' <br/> date iss eq 0 ';
+                    $_SESSION["date_issued_error_" . $x['id']] = 'This field is required!!!';
+                } else {
+                    $_SESSION['date_issued_' . $x['id']] = $date_issued;
                 }
+
                 if (strlen($date_expired) == 0) {
-                    echo ' <br/> date expr eq 0 ';
+                    $_SESSION["date_expired_error_" . $x['id']] = 'This field is required!!!';
+                } else {
+                    $_SESSION['date_expired_' . $x['id']] = $date_expired;
                 }
+
                 if (strlen($number) == 0) {
-                    echo ' <br/> number eq 0 ';
+                    $_SESSION["number_error_" . $x['id']] = 'This field is required!!!';
+                } else {
+                    $_SESSION['number_' . $x['id']] = $number;
                 }
             }
         } else {
-            echo "Three are zero ";
+
+            //row  တခု လုံး  မထည့်ထားတော့ ထည့် စဥ်းစားစရာမလို 
         }
     }
 }
-
 
 
 
@@ -77,7 +99,19 @@ include_once('./master_layouts/header.php');
 
     <form method="POST" autocomplete="off">
         <div class=" container mb-5">
-            <input class="form-control" list="crew-list" name="crew" id="crew" style="width: 400px;" required>
+            <?php
+            if (isset($_SESSION['selectedCrew'])) {
+            ?>
+                <input class="form-control" list="crew-list" name="crew" id="crew" style="width: 400px;" value="<?php echo $_SESSION['selectedCrew'] ?>" required>
+            <?php
+            } else {
+            ?>
+                <input class="form-control" list="crew-list" name="crew" id="crew" style="width: 400px;" required>
+            <?php
+            }
+
+            unset($_SESSION['selectedCrew']);
+            ?>
 
             <datalist id="crew-list">
                 <?php
@@ -101,34 +135,121 @@ include_once('./master_layouts/header.php');
             <tbody>
                 <?php
                 $count = 1;
+
+
                 foreach ($certificate_list as  $x) {
+
                     echo "<tr>";
                     echo "<td>" . $count++ . "</td>";
                     echo "<td>" . $x['name'] .  "</td>";
 
-                    echo "<td>" . "<div class='input-group date'>
-                <input type='text' id='dateIssued_" . $x['id'] . "' name='dateIssued_" . $x['id'] . "' class='datepicker form-control'>
-                <span class='input-group-append'>
-                    <span class='input-group-text  d-block'>
-                        <i class='fa fa-calendar'></i>
-                    </span>
-                </span>
-            </div>  " . "</td>";
+                    if (isset($_SESSION['date_issued_error_' . $x['id']])) {
+                        echo
+                        "<td>" .
+                            "<div class='input-group date'>
+                                <input type='text' id='dateIssued_" . $x['id'] . "' name='dateIssued_" . $x['id'] . "' class='datepicker form-control'>
+                                <span class='input-group-append'>
+                                    <span class='input-group-text  d-block'>
+                                        <i class='fa fa-calendar'></i>
+                                    </span> 
+                                </span>
+                            </div>  
+                                <span class='error_text text-uppercase'> " . 'This field is required!!!' . "</span>
+                        </td>  ";
+                        unset($_SESSION['date_issued_error_' . $x['id']]);
+                    } else {
+                        if (isset($_SESSION['date_issued_' . $x['id']])) {
+                            echo
+                            "<td>" .
+                                "<div class='input-group date'>
+                                    <input type='text' id='dateIssued_" . $x['id'] . "' name='dateIssued_" . $x['id'] . "' class='datepicker form-control' value='" . $_SESSION['date_issued_' . $x['id']] . "'>
+                                    <span class='input-group-append'>
+                                        <span class='input-group-text  d-block'>
+                                            <i class='fa fa-calendar'></i>
+                                        </span> 
+                                    </span>
+                                </div>  
+                        </td>  ";
+                            unset($_SESSION['date_issued_' . $x['id']]);
+                        } else {
+                            echo
+                            "<td>" .
+                                "<div class='input-group date'>
+                                <input type='text' id='dateIssued_" . $x['id'] . "' name='dateIssued_" . $x['id'] . "' class='datepicker form-control' >
+                                <span class='input-group-append'>
+                                    <span class='input-group-text  d-block'>
+                                        <i class='fa fa-calendar'></i>
+                                    </span> 
+                                </span>
+                            </div>  
+                        </td>  ";
+                        }
+                    }
 
-                    echo "<td>" . "<input name='number_" . $x['id'] . "' class='form-control' placeholder='Enter Number' type='number' /> 
-                    
-                    " . "</td>";
+                    if (isset($_SESSION['number_error_' . $x['id']])) {
+                        echo
+                        "<td>" .
+                            "<input name='number_" . $x['id'] . "' class='form-control' placeholder='Enter Number' type='number' /> 
+                            <span class='error_text text-uppercase'> " . 'This Field is Required!!!' . "</span>
+                        </td>";
+                        unset($_SESSION['number_error_' . $x['id']]);
+                    } else {
+                        if (isset($_SESSION['number_' . $x['id']])) {
+                            echo
+                            "<td>" .
+                                "<input name='number_" . $x['id'] . "' class='form-control' placeholder='Enter Number'     type='number' value='" . $_SESSION['number_' . $x['id']] . "' /> 
+                            </td>";
+                            unset($_SESSION['number_' . $x['id']]);
+                        } else {
+                            echo
+                            "<td>" .
+                                "<input name='number_" . $x['id'] . "' class='form-control' placeholder='Enter Number'     type='number' /> 
+                            </td>";
+                        }
+                    }
 
-                    echo "<td>" . "<div class='input-group date'>
-                <input type='text' id='dateExpired_" . $x['id'] . "' name='dateExpired_" . $x['id'] . "' class='datepicker form-control'>
-                <span class='input-group-append'>
-                    <span class='input-group-text  d-block'>
-                        <i class='fa fa-calendar'></i>
-                    </span>
-                </span>
-            </div>
-            
-            " . "</td>";
+                    if (isset($_SESSION['date_expired_error_' . $x['id']])) {
+                        echo
+                        "<td>" .
+                            "<div class='input-group date'>
+                                <input type='text' id='dateExpired_" . $x['id'] . "' name='dateExpired_" . $x['id'] . "' class='datepicker form-control'>
+                                <span class='input-group-append'>
+                                    <span class='input-group-text  d-block'>
+                                        <i class='fa fa-calendar'></i>
+                                    </span>
+                                </span>
+                                </div>
+                                <span class='error_text text-uppercase'> " . 'This field is required.' . "</span>
+                        </td>";
+                        unset($_SESSION['date_expired_error_' . $x['id']]);
+                    } else {
+                        if (isset($_SESSION['date_expired_' . $x['id']])) {
+                            echo
+                            "<td>" .
+                                "<div class='input-group date'>
+                                <input type='text' id='dateExpired_" . $x['id'] . "' name='dateExpired_" . $x['id'] . "' class='datepicker form-control' value='" . $_SESSION['date_expired_' . $x['id']] . "'>
+                                <span class='input-group-append'>
+                                <span class='input-group-text  d-block'>
+                                    <i class='fa fa-calendar'></i>
+                                </span>
+                                 </span>
+                                 </div>
+                         </td>";
+                            unset($_SESSION['date_expired_' . $x['id']]);
+                        } else {
+                            echo
+                            "<td>" .
+                                "<div class='input-group date'>
+                                    <input type='text' id='dateExpired_" . $x['id'] . "' name='dateExpired_" . $x['id'] . "' class='datepicker form-control'>
+                                    <span class='input-group-append'>
+                                    <span class='input-group-text  d-block'>
+                                        <i class='fa fa-calendar'></i>
+                                    </span>
+                                     </span>
+                                     </div>
+                             </td>";
+                        }
+                    }
                 }
                 ?>
 
@@ -143,16 +264,6 @@ include_once('./master_layouts/header.php');
     </form>
 
 </div>
-<!-- <label for="ice-cream-choice">Choose a flavor:</label>
-<input list="ice-cream-flavors" id="ice-cream-choice" name="ice-cream-choice" /> -->
-
-<!-- <datalist id="ice-cream-flavors">
-    <option value="">Chocolate</option>
-    <option value="Coconut">
-    <option value="Mint">
-    <option value="Strawberry">
-    <option value="Vanilla">
-</datalist> -->
 
 
 <?php
