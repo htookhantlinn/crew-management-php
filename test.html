@@ -13,15 +13,30 @@
 
 <body style="background-color: black;">
 
-    <select class=" form-select w-25 mt-5" name="division" id="division">
+    <!-- မြန်မာ နိုင် ငံ မြို့တွေကို  api နဲ့ ထုတ်ထားတ ာ -->
+    <!-- <select class=" form-select w-25 mt-5" name="division" id="division">
         <option>Select Your Divsion </option>
     </select>
 
-    
+     -->
 
+    <input list="browsers" name="browser" id="browser">
+
+    <datalist id="browsers">
+        <option value="Edge">
+        <option value="Firefox">
+        <option value="Chrome">
+        <option value="Opera">
+        <option value="Safari">
+    </datalist>
 
     <script src="./node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="./js/test.js"></script>
+    <script>
+        $('#browser').on('change',  () => {
+            console.log('Browser is changing');
+        });
+    </script>
+    <!-- <script src="./js/test.js"></script> -->
 </body>
 
 </html>

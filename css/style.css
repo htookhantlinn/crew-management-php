@@ -126,3 +126,22 @@ input::-webkit-calendar-picker-indicator {
 .error_text {
   color: red;
 }
+
+.personal_info_table tr th,
+.personal_info_table tbody tr td {
+  border: none !important;
+}
+.personal_info_table thead {
+  background-color: rgb(84, 184, 171);
+}
+.personal_info_container {
+  border-top: 3px solid rgb(84, 184, 171);
+}
+.search_btn:hover {
+  background-color: rgb(84, 184, 171) !important;
+  border-color: rgb(84, 184, 171);
+}
+.search_btn {
+  color: rgb(84, 184, 171);
+  border-color: rgb(84, 184, 171) !important;
+}

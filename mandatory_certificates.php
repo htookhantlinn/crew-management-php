@@ -27,6 +27,10 @@ if (isset($_POST['mandatory_cert_submit_btn'])) {
     $sbook_no = $temp[0];
     $_SESSION['selectedCrew'] = $crew;
     $flag = true;
+
+    //flag က data သုံးခုလုံးဖြည့်ထားပေမယ့် ကျန်တယ့် row မှာ ဒေ တာ မဖြည့်ထားရင် db ထဲ ကို သွားမသိမ်းဖို့ ကို ထိမ်းထားတ ာ 
+
+
     foreach ($certificate_list as  $x) {
 
         $date_issued = $_POST['dateIssued_' . $x['id']];
@@ -54,7 +58,8 @@ if (isset($_POST['mandatory_cert_submit_btn'])) {
                 //သုံးခုလုံးကို user က ထည့်လိုက်ပီ
 
                 if ($flag) {
-                    $crew_cert_controller->add_crew_cert($crew['id'], $x['id'], $date_issued, $number, $date_expired, $sbook_no);
+                    $crew_cert_controller->add_crew_cert($crew['id'], $x['id'], $date_issued, $number, $date_expired);
+                    header('location:mandatory_certificates_list.php');
                 } else {
                     $_SESSION['date_issued_' . $x['id']] = $date_issued;
                     $_SESSION['date_expired_' . $x['id']] = $date_expired;
@@ -112,7 +117,6 @@ include_once('./master_layouts/header.php');
 
             unset($_SESSION['selectedCrew']);
             ?>
-
             <datalist id="crew-list">
                 <?php
                 foreach ($crew_list as $x) {

@@ -28,12 +28,12 @@ $(document).ready(function () {
         console.log('changing in selection files ');
     });
 
-    $('body').on('click', '.delete',  (event) => {
+    $('body').on('click', '.delete', (event) => {
 
-        console.log('delete button click ');
+        // console.log('delete button click ');
         $result = confirm('Are you sure want to delete ? ');
         if ($result) {
-            console.log('hi');
+            // console.log('hi');
             event.preventDefault();
             var city_id = $('.delete').parents('.selected').attr('city_id');
             console.log(city_id);
@@ -50,6 +50,59 @@ $(document).ready(function () {
                 }
             });
         }
+    });
+
+    $('body').on('change', '#crew_input', () => {
+        var val = $('#crew_input').val();
+        // console.log(val);
+
+        var sbook = $('#crew_list_personal_info option').filter(function () {
+            return this.value == val;
+        }).data('sbook');
+
+        var id = $('#crew_list_personal_info option').filter(function () {
+            return this.value == val;
+        }).data('id');
+
+        $('#sb_perinfo').val(sbook);
+        $('#hidden_input').val(id);
+        console.log(id);
+    });
+    $('body').on('change', '#certificate', () => {
+        console.log('certificate is changing');
+        var val = $('#certificate').val();
+        // // console.log(val);
+
+        // var sbook = $('#certificate_list option').filter(function () {
+        //     return this.value == val;
+        // }).data('sbook');
+
+        var id = $('#certificate_list option').filter(function () {
+            return this.value == val;
+        }).data('id');
+        $('#hidden_certificate_id').val(id);
+
+        console.log(id);
+
+        // $('#sb_perinfo').val(sbook);
+        // $('#hidden_input').val(id);
+        // console.log(id);
+    });
+
+
+    $('body').on('dblclick', '#certificate', () => {
+        $('#certificate').val(' ');
+
+    });
+
+    $('body').on('dblclick', '#crew_input', () => {
+        console.log('crew focus');
+        $('#crew_input').val(' ');
+        $('#sb_perinfo').val(' ');
+    });
+    $('body').on('dblclick', '#crew', () => {
+        // console.log('crew focus');
+        $('#crew').val(' ');
     });
 
 

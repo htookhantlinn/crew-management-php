@@ -1,11 +1,13 @@
-<?php 
+<input list="browsers" name="browser" id="browser">
 
-if(session_status()== PHP_SESSION_NONE){
-    session_start();
-}
+<datalist id="browsers">
+  <option value="Edge" >
+  <option value="Firefox">
+  <option value="Chrome">
+  <option value="Opera">
+  <option value="Safari">
+</datalist>
 
+<script>
 
-
-
-
-
+</script>

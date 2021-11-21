@@ -147,7 +147,7 @@ if (session_status() == PHP_SESSION_NONE) {
             </li>
 
             <li class="nav-item">
-                <a class="nav-link " href="mandatory_certificates.php">
+                <a class="nav-link " href="mandatory_certificates_list.php">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>MandatoryCertificates</span>
                 </a>
