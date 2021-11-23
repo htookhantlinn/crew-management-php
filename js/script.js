@@ -1,5 +1,31 @@
 $(document).ready(function () {
+    $('#repeater').createRepeater();
 
+    $('#repeater_form').on('submit', function (event) {
+        event.preventDefault();
+        console.log('hi');
+        $.ajax({
+            url: "insert_service.php",
+            method: "POST",
+            data: $(this).serialize(),
+            success: (data) => {
+                // console.log(data);
+                // console.log(data);
+                $('#repeater_form')[0].reset();
+                // $('#repeater').createRepeater();
+                // $('body').html(' ');
+                $('body').html('');
+                $('body').html(data);
+            }
+        })
+    });
+   
+
+    $('.repeater-add-btn').on('click', () => {
+        console.log('clicking');
+        $(".datepicker").datepicker();
+
+    });
     $(function () {
         // $('.date').datepicker();
         $(".datepicker").datepicker();
@@ -66,7 +92,45 @@ $(document).ready(function () {
 
         $('#sb_perinfo').val(sbook);
         $('#hidden_input').val(id);
-        console.log(id);
+        // console.log(id);
+    });
+
+
+    $('body').on('change', '#crew_service_list', () => {
+        // console.log($('#crew_service_list'));
+        var val = $('#crew_service_list').val();
+        // console.log('crew list changing');
+        var sbook = $('#crew_service_list option').filter(function () {
+            return this.value == val;
+        }).data('sbook');
+        console.log(val);
+        console.log(sbook);
+
+        $('#sbookNo_service').val(sbook);
+        // $('#hidden_crew_id').val(val);
+        $('#hidden_crew_id').val(val);
+        $.ajax({
+            url: "reload_service_create.php?cid="+val,
+            method: "POST",
+            data: $(this).serialize(),
+            success: (data) => {
+                
+                // $('#repeater_form')[0].reset();
+                // $('#repeater').createRepeater();
+                console.log(data);
+                $('#select_vessel_service').html(data);
+                // $('body').html(data);
+            }
+        })
+        // console.log(sbook);
+
+        // var id = $('#crew_list_personal_info option').filter(function () {
+        //     return this.value == val;
+        // }).data('id');
+
+        // $('#sb_perinfo').val(sbook);
+        // $('#hidden_input').val(id);
+        // console.log(id);
     });
     $('body').on('change', '#certificate', () => {
         console.log('certificate is changing');
@@ -83,10 +147,6 @@ $(document).ready(function () {
         $('#hidden_certificate_id').val(id);
 
         console.log(id);
-
-        // $('#sb_perinfo').val(sbook);
-        // $('#hidden_input').val(id);
-        // console.log(id);
     });
 
 

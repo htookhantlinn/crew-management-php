@@ -56,7 +56,14 @@ include_once('./master_layouts/header.php');
                 //$vessel_controller->get_vessel_by_id($x['vessel_type'])['name']
                 echo "<td>" . $x['name']. "</td>";
                 echo "<td>" . $x['sbookno'] . "</td>";
-                echo "<td><a  href='crew_detail.php?cid=" . $x['id'] . "' class=' m-1 btn btn-outline-info'><i class=\"fas fa-eye\"></i></a><a  href='crew_edit_form.php?cid=" . $x['id'] . "'class=' m-1 btn btn-outline-warning'><i class=\"fas fa-edit\"></i></a><a href='crew_index.php?cid=" . $x['id'] . "' class=' m-1 btn btn-outline-danger' onclick=\"return confirm('Delete this record?')\" > <i class=\"fa fa-trash\" aria-hidden=\"true\"></i></a></td>";
+                echo "<td>
+                <a  href='crew_detail.php?cid=" . $x['id'] . "' class=' m-1 btn btn-outline-info'><i class=\"fas fa-eye\"></i></a>
+                <a  href='crew_edit_form.php?cid=" . $x['id'] . "'class=' m-1 btn btn-outline-warning'><i class=\"fas fa-edit\"></i></a>
+                <a href='crew_index.php?cid=" . $x['id'] . "' class=' m-1 btn btn-outline-danger' onclick=\"return confirm('Delete this record?')\" > <i class=\"fa fa-trash\" aria-hidden=\"true\"></i></a>
+                <a  href='service_create.php?cid=" . $x['id'] . "' class=' m-1 btn btn-outline-success'>
+                <i class='fas fa-upload'></i>
+                </a>
+                </td>";
                 echo "</tr>";
             }
             ?>

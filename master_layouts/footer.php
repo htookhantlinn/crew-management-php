@@ -77,7 +77,7 @@
 <script src="js/demo/datatables-demo.js"></script>
 <!-- data table end  -->
 
-
+<script src="./js/repeater.js"></script>
 <!-- custom js -->
 <script src="./js/script.js"></script>
 

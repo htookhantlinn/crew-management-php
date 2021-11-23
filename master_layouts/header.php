@@ -153,6 +153,14 @@ if (session_status() == PHP_SESSION_NONE) {
                 </a>
 
             </li>
+
+            <li class="nav-item">
+                <a class="nav-link " href="service_list.php">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Service</span>
+                </a>
+
+            </li>
             
 
             <!-- Nav Item - Utilities Collapse Menu -->
