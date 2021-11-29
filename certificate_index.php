@@ -17,7 +17,7 @@ $result = $certificate_controller->show_all_certificate();
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Name</th>
+                <th scope="col"><label>Name</label></th>
                 <th scope="col">Actions</th>
             </tr>
         </thead>
@@ -25,10 +25,16 @@ $result = $certificate_controller->show_all_certificate();
             <?php
             $count = 1;
             foreach ($result as  $x) {
-                echo "<tr>";
+                echo "<tr class='rowitem'>";
                 echo "<td>" . $count++ . "</td>";
-                echo "<td>" . $x['name'] .  "</td>";
-                echo "<td><a  href='certificate_detail_form.php?cert_id=" . $x['id'] . "' class=' m-1 btn btn-outline-info'><i class=\"fas fa-eye\"></i></a><a  href='certificate_edit_form.php?cert_id=" . $x['id'] . "'class=' m-1 btn btn-outline-warning'><i class=\"fas fa-edit\"></i></a><a href='certificate_index.php?cert_id=" . $x['id'] . "' class=' m-1 btn btn-outline-danger' onclick=\"return confirm('Delete this record?')\" ><i class=\"fa fa-trash\" aria-hidden=\"true\"></i></a></td>";
+                echo "<td class='certificateName_td'
+                data-id='" . $x['id'] . "'
+                ><label class='certificateName_label'>" . $x['name'] . "</label><input type='text' class='certificate_text text-uppercase form-control'>";
+
+                echo "<td><a  href='certificate_detail_form.php?cert_id=" . $x['id'] . "' class=' m-1 btn btn-outline-info'><i class=\"fas fa-eye\"></i></a><a  href='certificate_edit_form.php?cert_id=" . $x['id'] . "'class=' m-1 btn btn-outline-warning'><i class=\"fas fa-edit\"></i></a><a href='certificate_index.php?cert_id=" . $x['id'] . "' class=' m-1 btn btn-outline-danger' onclick=\"return confirm('Delete this record?')\" ><i class=\"fa fa-trash\" aria-hidden=\"true\"></i></a>
+                <a  href='#' class=' m-1 btn btn-outline-info edit_button_test'>Test</a>
+                
+                </td>";
                 echo "</tr>";
             }
             ?>

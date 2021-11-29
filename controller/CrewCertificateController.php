@@ -18,6 +18,12 @@ class CrewCertificateController extends CrewCertificate
       return $this->get_crew_cert_by_certID_and_crewID($crewId, $certId);
    }
 
+   public function update_crew_certificate($crew_cert_id, $cert_id, $crew_id, $date_issued, $number, $date_expired)
+   {
+      # code...
+      return $this->update_crew_certificate_by_id($crew_cert_id, $cert_id, $crew_id, $date_issued, $number, $date_expired);
+   }
+
    // SELECT * from crew as c JOIN crew_certificate as c_crew WHERE c.id=c_crew.crew_id;
    //SELECT * from crew as c JOIN crew_certificate as c_crew JOIN certificate as cert WHERE c.id=c_crew.crew_id AND cert.id=c_crew.cert_id;
 

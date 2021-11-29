@@ -127,10 +127,13 @@ input::-webkit-calendar-picker-indicator {
   color: red;
 }
 
+.table_service tr th,
 .personal_info_table tr th,
+.table_service tbody tr td,
 .personal_info_table tbody tr td {
   border: none !important;
 }
+.table_service thead,
 .personal_info_table thead {
   background-color: rgb(84, 184, 171);
 }
@@ -144,4 +147,23 @@ input::-webkit-calendar-picker-indicator {
 .search_btn {
   color: rgb(84, 184, 171);
   border-color: rgb(84, 184, 171) !important;
+}
+tr.mandt_cert_list_tr td input[type="text"],
+tr.mandt_cert_list_tr td input[type="number"],
+tr.mandt_cert_list_tr td span,
+tr.service_list_tr td input[type="text"],
+tr.rowitem td input[type="text"] {
+  display: none;
+}
+tr.editMode td input[type="number"],
+tr.editMode td input[type="text"],
+tr.editMode td span,
+tr.editMode td input[type="text"],
+tr.editMode td input[type="text"] {
+  display: block;
+}
+
+tr.editMode td label,
+tr.editMode td label {
+  display: none;
 }

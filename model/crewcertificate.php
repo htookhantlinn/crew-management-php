@@ -39,7 +39,14 @@ class CrewCertificate
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         // $sql  = "SELECT * from crew as c JOIN vessel as v WHERE c.vessel_type=v.id;";
-        $sql = "SELECT * from crew as c JOIN crew_certificate as c_crew JOIN certificate as cert WHERE c.id=c_crew.crew_id AND cert.id=c_crew.cert_id;";
+
+        // $sql = "SELECT * from crew_certificate as c_crew  JOIN  crew as c JOIN certificate as cert WHERE c.id=c_crew.crew_id AND cert.id=c_crew.cert_id;";
+
+        $sql = "SELECT cc.id,cc.crew_id,cc.cert_id,cc.date_issued,cc.number,cc.date_expired,c.firstname,c.lastname,c.middlename,cert.name from crew_certificate as cc JOIN crew as c  JOIN certificate as cert  WHERE  cc.crew_id=c.id  AND cc.cert_id=cert.id;";
+
+        // $sql = "SELECT * from crew as c JOIN crew_certificate as c_crew JOIN certificate as cert WHERE c.id=c_crew.crew_id AND cert.id=c_crew.cert_id;";
+
+        //SELECT * from crew_certificate as c_crew  JOIN  crew as c JOIN certificate as cert WHERE c.id=c_crew.crew_id AND cert.id=c_crew.cert_id;
         $statement = $this->pdo->prepare($sql);
 
         $statement->execute();
@@ -68,6 +75,33 @@ class CrewCertificate
 
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
         return $result;
+
+        Database::disconnect();
+    }
+
+    public function update_crew_certificate_by_id($crew_cert_id, $cert_id, $crew_id, $date_issued, $number, $date_expired)
+    {
+        $this->pdo = Database::connect();
+        $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $sql = "UPDATE crew_certificate SET date_issued=:date_issued,
+        number=:number,
+        date_expired=:date_expired WHERE id=:crew_cert_id AND cert_id=:cert_id AND  crew_id=:crew_id";
+
+        $statement = $this->pdo->prepare($sql);
+
+        $statement->bindParam("crew_cert_id", $crew_cert_id);
+        $statement->bindParam("cert_id", $cert_id);
+        $statement->bindParam("crew_id", $crew_id);
+        $statement->bindParam("date_issued", $date_issued);
+        $statement->bindParam("number", $number);
+        $statement->bindParam("date_expired", $date_expired);
+
+        if ($statement->execute()) {
+            return true;
+        } else {
+            return false;
+        }
 
         Database::disconnect();
     }

@@ -3,7 +3,7 @@ include_once('db.php');
 class Service
 {
     private $pdo;
-    public function insertService($crew_id,$company,$rank,$shipname,$vessel_id,$from_date,$to_date,$reason)
+    public function insertService($crew_id, $company, $rank, $shipname, $vessel_id, $from_date, $to_date, $reason)
     {
         $this->pdo = Database::connect();
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -32,7 +32,9 @@ class Service
         $this->pdo = Database::connect();
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $sql  = "SELECT * from service as sv JOIN crew as c JOIN vessel as vs  where sv.crew_id = c.id AND sv.vessel_id=vs.id;";
+        // $sql  = "SELECT * from service as sv JOIN crew as c JOIN vessel as vs  where sv.crew_id = c.id AND sv.vessel_id=vs.id;";
+        $sql = "SELECT sv.id,sv.crew_id,sv.company,sv.rank,sv.shipname,sv.vessel_id,sv.from_date,sv.to_date,sv.reason,c.firstname,c.middlename,c.lastname,
+        vs.name from service as sv JOIN crew as c JOIN vessel as vs  where sv.crew_id = c.id AND sv.vessel_id=vs.id;";
 
         $statement = $this->pdo->prepare($sql);
 
@@ -79,17 +81,19 @@ class Service
         Database::disconnect();
     }
 
-    public function update_city_by_id($city_id,$city_name_update)
+    public function update_service_by_id($id, $company, $rank, $ship)
     {
         $this->pdo = Database::connect();
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $sql = "UPDATE city SET name=:city_name_update WHERE id=:city_id";
+        $sql = "UPDATE service SET company=:company,rank=:rank,shipname=:ship WHERE id=:id";
 
         $statement = $this->pdo->prepare($sql);
 
-        $statement->bindParam("city_id", $city_id);
-        $statement->bindParam("city_name_update", $city_name_update);
+        $statement->bindParam("id", $id);
+        $statement->bindParam("company", $company);
+        $statement->bindParam("rank", $rank);
+        $statement->bindParam("ship", $ship);
 
         if ($statement->execute()) {
             return true;

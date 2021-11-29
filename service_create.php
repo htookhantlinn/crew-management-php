@@ -104,7 +104,7 @@ include_once('./master_layouts/header.php');
                   <input type="text" data-skip-name="true" name='rank[]' class="form-control">
                 </div> -->
 
-                                <div class="col-md-2">
+                                <div class="col-md-2" id="select_vessel_service_container">
                                     <label>Vessel Type</label>
                                     <select data-skip-name="true" id="select_vessel_service" name="vtype[]" class="form-select">
                                         <?php

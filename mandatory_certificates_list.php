@@ -9,6 +9,9 @@ $result  = $crew_cert_controller->select_all_crew_cert();
 $certificate_list  = $certificate_controller->show_all_certificate();
 $crew_list  = $crew_controller->show_all_crew_join_table();
 
+// $filterResult = $crew_cert_controller->get_crew_cert_by_certID_and_crewID($crew_id, $certificate_id);
+
+
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -140,9 +143,9 @@ include_once('./master_layouts/header.php');
                 ?>
                 <?php
                 if (isset($_SESSION['sb_perinfo'])) { ?>
-                    <input type="text" class="form-control" placeholder="SBook Number" name="sb_perinfo" id="sb_perinfo" value="<?php echo $_SESSION['sb_perinfo']; ?>" disabled  />
+                    <input type="text" class="form-control" placeholder="SBook Number" name="sb_perinfo" id="sb_perinfo" value="<?php echo $_SESSION['sb_perinfo']; ?>" disabled />
                 <?php
-                unset($_SESSION['sb_perinfo']);
+                    unset($_SESSION['sb_perinfo']);
                 } else { ?>
                     <input type="text" class="form-control" placeholder="SBook Number" name="sb_perinfo" id="sb_perinfo" disabled />
                 <?php
@@ -159,12 +162,84 @@ include_once('./master_layouts/header.php');
         </div>
         <?php
 
-        if (isset($_SESSION['filterResult']))
+        if (isset($_SESSION['filterResult'])) {
             if (count($filterResult) > 0) {
         ?>
+                <table class="table  personal_info_table ">
+                    <thead>
+                        <tr>
+                            <th scope="col">Certificate </th>
+                            <th scope="col">Date Issue </th>
+                            <th scope="col">Number </th>
+                            <th scope="col">Date Expired </th>
+                            <th scope="col">Person Name</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        foreach ($filterResult as  $x) {
+                            echo "<tr class='mandt_cert_list_tr'>";
+                            echo "<td>" . $x['name'] . "</td>";
+
+                            echo "<td class='date_issued_td'
+                            data-cert-id='" . $x['cert_id'] . "'
+                            data-crew-id='" . $x['crew_id'] . "'
+                                    data-id='" . $x['id'] . "'
+                            ><label class='date_issued_label'>" . $x['date_issued'] . "</label>
+                            
+                            <div class='input-group date'>
+                                            
+                                            <input type='text' class='datepicker form-control date_issued_text text-uppercase form-control'>
+                                            <span class='input-group-append'>
+                                                <span class='input-group-text  d-block'>
+                                                    <i class='fa fa-calendar'></i>
+                                                </span> 
+                                            </span>
+                                        </div>  
+                            ";
+                            echo "<td class='number_td'
+                            data-id='" . $x['cert_id'] . "'
+                            ><label class='number_label'>" .  $x['number'] . "</label><input type='number' class='number_text text-uppercase form-control'>";
+
+                            echo "<td class='date_expired_td'
+                            data-id='" . $x['id'] . "'
+                            ><label class='date_expired_label'>" . $x['date_expired'] . "</label>
+                            <div class='input-group date'>
+                                            
+                                            <input type='text' class='datepicker form-control date_expired_text text-uppercase form-control'>
+                                            <span class='input-group-append'>
+                                                <span class='input-group-text  d-block'>
+                                                    <i class='fa fa-calendar'></i>
+                                                </span> 
+                                            </span>
+                                        </div>  
+                            
+                            ";
+
+
+                            echo "<td>" . $x['firstname'] . ' ' . $x['middlename'] . ' ' . $x['lastname'] . "</td>";
+                            echo "<td>
+                                    <a  href='#'class='  m-1 btn btn-outline-warning edit-certificate-button'>EDIT</a>
+                                    </td>";
+                            echo "</tr>";
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            <?php
+            } else {
+            ?>
+                <h3>There is no result</h3>
+            <?php
+            }
+            unset($_SESSION['filterResult']);
+        } else {
+            ?>
             <table class="table  personal_info_table ">
                 <thead>
                     <tr>
+                        <th scope="col">No </th>
                         <th scope="col">Certificate </th>
                         <th scope="col">Date Issue </th>
                         <th scope="col">Number </th>
@@ -175,27 +250,59 @@ include_once('./master_layouts/header.php');
                 </thead>
                 <tbody>
                     <?php
-                    foreach ($filterResult as  $x) {
-                        echo "<tr>";
+                    $count = 1;
+                    foreach ($result as  $x) {
+                        echo "<tr class='mandt_cert_list_tr'>";
+                        echo "<td>" . $count++ . "</td>";
                         echo "<td>" . $x['name'] . "</td>";
-                        echo "<td>" . $x['date_issued'] . "</td>";
-                        echo "<td>" . $x['number'] . "</td>";
-                        echo "<td>" . $x['date_expired'] . "</td>";
+
+                        echo "<td class='date_issued_td'
+                            data-cert-id='" . $x['cert_id'] . "'
+                            data-crew-id='" . $x['crew_id'] . "'
+                                    data-id='" . $x['id'] . "'
+                            ><label class='date_issued_label'>" . $x['date_issued'] . "</label>
+                            
+                            <div class='input-group date'>
+                                            
+                                            <input type='text' class='datepicker form-control date_issued_text text-uppercase form-control'>
+                                            <span class='input-group-append'>
+                                                <span class='input-group-text  d-block'>
+                                                    <i class='fa fa-calendar'></i>
+                                                </span> 
+                                            </span>
+                                        </div>  
+                            ";
+                        echo "<td class='number_td'
+                            data-id='" . $x['cert_id'] . "'
+                            ><label class='number_label'>" .  $x['number'] . "</label><input type='number' class='number_text text-uppercase form-control'>";
+
+                        echo "<td class='date_expired_td'
+                            data-id='" . $x['id'] . "'
+                            ><label class='date_expired_label'>" . $x['date_expired'] . "</label>
+                            <div class='input-group date'>
+                                            
+                                            <input type='text' class='datepicker form-control date_expired_text text-uppercase form-control'>
+                                            <span class='input-group-append'>
+                                                <span class='input-group-text  d-block'>
+                                                    <i class='fa fa-calendar'></i>
+                                                </span> 
+                                            </span>
+                                        </div>  
+                            
+                            ";
+
+
                         echo "<td>" . $x['firstname'] . ' ' . $x['middlename'] . ' ' . $x['lastname'] . "</td>";
-                        echo "<td><a  href='#' class=' m-1 btn btn-outline-info '>
-            VIEW</a><a  href='#'class=' m-1 btn btn-outline-warning'>EDIT</a></td>";
+                        echo "<td>
+                                    <a   class=' m-1 btn btn-outline-warning edit-certificate-button'>EDIT</a>
+                                    </td>";
                         echo "</tr>";
                     }
                     ?>
                 </tbody>
             </table>
         <?php
-            } else {
-        ?>
-            <h3>There is no result</h3>
-        <?php
-            }
-        unset($_SESSION['filterResult']);
+        }
         ?>
 
 
